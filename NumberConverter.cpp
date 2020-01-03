@@ -1,19 +1,19 @@
 #include "NumberConverter.h"
 #include "DEFINITIONS.h"
 
-
-std::vector<int> NumberConverter::vd2b(int dec) {
+std::vector<int> NumberConverter::vd2b(long long dec) {
 	std::vector<int> bin;
 	for (int i = 0; dec > 0; i++) {
 		bin.push_back(dec % 2);
-		dec = dec / 2;
+		dec /= 2;
 	}
 	std::reverse(bin.begin(), bin.end());
 	return bin;
 }
 
-int NumberConverter::d2b(int dec) {
-	int bin = 0, i = 0, r;
+long long NumberConverter::d2b(long long dec) {
+	int i = 0;
+	long long bin = 0, r = 0;
 	while (dec != 0)
 	{
 		r = dec % 2;
@@ -24,9 +24,10 @@ int NumberConverter::d2b(int dec) {
 	return bin;
 }
 
-int NumberConverter::b2d(int bin)
+long long NumberConverter::b2d(long long bin)
 {
-	int dec = 0, i = 0, r;
+	int i = 0;
+	long long dec = 0, r = 0;
 	while (bin != 0)
 	{
 		r = bin % 10;
