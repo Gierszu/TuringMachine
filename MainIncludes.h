@@ -8,3 +8,4 @@
 #include <vector>
 
 #include"NumberConverter.h"
+#include"TuringMachine.h"

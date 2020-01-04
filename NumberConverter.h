@@ -10,6 +10,8 @@ class NumberConverter {
 public:
 	long long d2b(long long dec);			//  Przyjmuje liczbê decymaln¹ i zwraca liczbê w postaci binarnej
 	long long b2d(long long bin);			//  Przyjmuje liczbê binarn¹ i zwraca liczbê w postaci decymalnej
+
+	long long b2d(std::vector<int> bin);
 	
 	std::vector<int> vd2b(long long dec); //  Przyjmuje liczbê decymaln¹ i zwraca wektor liczby w postaci binarnej
 };

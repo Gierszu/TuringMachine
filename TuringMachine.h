@@ -19,12 +19,14 @@ public:
 	// Testowe:
 	void increment();
 private:
-	int read();
-	void write();
-	void move();
+	void read();
+	void write(int newSymbol);
+	void move(Direction dir);
 
 	std::vector<int> _tape;
 	Direction _dir;
+	int _pos;
 	int _state;
+	int _symbol;
 };
 

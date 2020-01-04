@@ -19,6 +19,8 @@ std::vector<int> NumberConverter::vd2b(long long dec) {
 	return bin;
 }
 
+
+
 long long NumberConverter::d2b(long long dec) {
 	int i = 0, r = 0;
 	double bin = 0;
@@ -46,3 +48,12 @@ long long NumberConverter::b2d(long long bin)
 	return dec;
 };
 
+long long NumberConverter::b2d(std::vector<int> bin) {
+	std::reverse(bin.begin(), bin.end());
+	long long dec = 0;
+
+	for (int i = 0; i < bin.size(); i++) {
+		dec += bin[i] * pow(2, i);
+	}
+	return dec;
+}
