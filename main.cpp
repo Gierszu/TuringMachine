@@ -26,7 +26,12 @@ int main() {
 		std::cout << vbin[i];
 	}
 
-	int* tape = convert.give_tape(n);
+	int actual_tape[19];
+	for (int i = 0; i < 19; i++) {
+		actual_tape[i] = EMPTY;
+	}
+
+	int* tape = convert.give_tape(actual_tape, n);
 	std::cout << "\nPostac tasmy: ";
 	for (int i = 0; i < 19; i++) {
 		std::cout << tape[i];

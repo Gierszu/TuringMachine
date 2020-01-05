@@ -63,27 +63,26 @@ long long NumberConverter::b2d(std::vector<int> bin) {
 }
 
 /// Przyjmuje dwie liczby decymalne i dzia³anie i robi z nich pointer do taœmy, sprawdzaj¹c, czy obie siê zmieszcz¹, oraz czy wynik dzia³ania siê zmieœci.
-int* NumberConverter::give_tape(int dec_1, int dec_2, Operation op) {
+int* NumberConverter::give_tape(int tape[19], int dec_1, int dec_2, Operation op) {
 	std::vector<int> bin_1 = vd2b(dec_1);
 	std::vector<int> bin_2 = vd2b(dec_2);
 	std::vector<int> bin_result;
 
-	int tape[19];
-	for (int i = 0; i < 19; i++) {
-		tape[i] = EMPTY;
-	}
-
 	if (op == Operation::ADD) {
-		std::vector<int> bin_result = vd2b(dec_1 + dec_2);
+		bin_result = vd2b(dec_1 + dec_2);
 	}
 	else if (op == Operation::SUB) {
-		std::vector<int> bin_result = vd2b(dec_1 - dec_2);
+		bin_result = vd2b(dec_1 - dec_2);
 	}
 	else if (op == Operation::MUL) {
-		std::vector<int> bin_result = vd2b(dec_1 * dec_2);
+		bin_result = vd2b(dec_1 * dec_2);
+	}
+	else if (op == Operation::DIV) {
+		bin_result = vd2b(dec_1 / dec_2);
 	}
 	else {
-		std::vector<int> bin_result = vd2b(dec_1 / dec_2);
+		std::cout << "Nie rozpoznano dzialania.";
+		return tape;
 	}
 
 	if ((bin_1.size() + bin_2.size()) < 17 && bin_result.size() < 17) {
@@ -114,19 +113,8 @@ int* NumberConverter::give_tape(int dec_1, int dec_2, Operation op) {
 // Testowe:
 
 /// Przyjmuje dwie liczbê decymaln¹ i robi z niej pointer do taœmy, sprawdzaj¹c, czy siê zmieœci.
-int* NumberConverter::give_tape(int dec) {
+int* NumberConverter::give_tape(int tape[19],int dec) {
 	std::vector<int> bin = vd2b(dec);
-	
-	std::cout << "\n\nTest : ";
-	for (int i = 0; i < bin.size(); i++) {
-		std::cout << bin[i];
-	}
-	std::cout << "\n\n";
-
-	int tape[19];
-	for (int i = 0; i < 19; i++) {
-		tape[i] = EMPTY;
-	}
 
 	if (bin.size() < 17) {
 		for (int i = 0; i < 19; i++) {
@@ -142,12 +130,5 @@ int* NumberConverter::give_tape(int dec) {
 		std::cout << "Podana liczba jest za duza do tasmy!";
 		return tape;
 	}
-
-	std::cout << "\n\nTest : ";
-	for (int i = 0; i < 19; i++) {
-		std::cout << tape[i];
-	}
-	std::cout << "\n\n";
-
 	return tape;
 }

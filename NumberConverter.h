@@ -16,7 +16,7 @@ public:
 	
 	std::vector<int> vd2b(long long dec); 
 
-	int* give_tape(int dec_1, int dec_2, Operation op);
-	int* give_tape(int dec);
+	int* give_tape(int tape[19], int dec_1, int dec_2, Operation op);
+	int* give_tape(int tape[19], int dec);
 };
 
