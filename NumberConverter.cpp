@@ -1,4 +1,4 @@
-#include "NumberConverter.h"
+#include "NumberConverter.hpp"
 #include "DEFINITIONS.h"
 
 /// W razie jakby pow() nie dzia³a³o jak chcemy.

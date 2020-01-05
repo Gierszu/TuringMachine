@@ -154,17 +154,11 @@
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="TuringMachine.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="NumberConverter.h" />
+    <ClInclude Include="NumberConverter.hpp" />
     <ClInclude Include="DEFINITIONS.h" />
     <ClInclude Include="MainIncludes.h" />
-    <ClInclude Include="TuringMachine.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="DEFINITIONS.h" />
+    <ClInclude Include="TuringMachine.hpp" />
     <ClInclude Include="GraphicsEngine.hpp" />
-    <ClInclude Include="MainIncludes.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

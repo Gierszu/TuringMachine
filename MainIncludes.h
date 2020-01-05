@@ -14,5 +14,5 @@
 
 #include "DEFINITIONS.h"
 #include "GraphicsEngine.hpp"
-#include"NumberConverter.h"
-#include"TuringMachine.h"
+#include"NumberConverter.hpp"
+#include"TuringMachine.hpp"

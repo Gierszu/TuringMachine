@@ -1,7 +1,7 @@
 #pragma once
 
 #include "DEFINITIONS.h"
-#include "NumberConverter.h"
+#include "NumberConverter.hpp"
 
 
 class TuringMachine {
