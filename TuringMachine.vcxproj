@@ -150,8 +150,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="NumberConverter.cpp" />
     <ClCompile Include="GraphicsEngine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="TuringMachine.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="NumberConverter.h" />
+    <ClInclude Include="DEFINITIONS.h" />
+    <ClInclude Include="MainIncludes.h" />
+    <ClInclude Include="TuringMachine.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DEFINITIONS.h" />

@@ -18,6 +18,15 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="NumberConverter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TuringMachine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DEFINITIONS.h">
     <ClCompile Include="GraphicsEngine.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
@@ -29,6 +38,10 @@
     <ClInclude Include="MainIncludes.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NumberConverter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TuringMachine.h">
     <ClInclude Include="DEFINITIONS.h">
       <Filter>Header Files</Filter>
     </ClInclude>
