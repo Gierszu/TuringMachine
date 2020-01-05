@@ -1,7 +1,8 @@
 #include "NumberConverter.h"
 #include "DEFINITIONS.h"
 
-double power(int nr, int exp) {
+/// W razie jakby pow() nie dzia³a³o jak chcemy.
+double NumberConverter::power(int nr, int exp) {
 	double out = 1;
 	for (int i = 0; i < exp; i++) {
 		out *= nr;
@@ -9,6 +10,7 @@ double power(int nr, int exp) {
 	return out;
 }
 
+/// Przyjmuje liczbê decymaln¹ i zwraca wektor liczby w postaci binarnej.
 std::vector<int> NumberConverter::vd2b(long long dec) {
 	std::vector<int> bin;
 	for (int i = 0; dec > 0; i++) {
@@ -20,7 +22,7 @@ std::vector<int> NumberConverter::vd2b(long long dec) {
 }
 
 
-
+/// Przyjmuje liczbê decymaln¹ i zwraca liczbê w postaci binarnej.
 long long NumberConverter::d2b(long long dec) {
 	int i = 0, r = 0;
 	double bin = 0;
@@ -34,6 +36,7 @@ long long NumberConverter::d2b(long long dec) {
 	return bin;
 }
 
+/// Przyjmuje liczbê binarn¹ i zwraca liczbê w postaci decymalnej.
 long long NumberConverter::b2d(long long bin)
 {
 	int i = 0;
@@ -48,6 +51,7 @@ long long NumberConverter::b2d(long long bin)
 	return dec;
 };
 
+/// Przyjmuje wektor binarny i robi liczbê decymaln¹.
 long long NumberConverter::b2d(std::vector<int> bin) {
 	std::reverse(bin.begin(), bin.end());
 	long long dec = 0;
@@ -56,4 +60,94 @@ long long NumberConverter::b2d(std::vector<int> bin) {
 		dec += bin[i] * pow(2, i);
 	}
 	return dec;
+}
+
+/// Przyjmuje dwie liczby decymalne i dzia³anie i robi z nich pointer do taœmy, sprawdzaj¹c, czy obie siê zmieszcz¹, oraz czy wynik dzia³ania siê zmieœci.
+int* NumberConverter::give_tape(int dec_1, int dec_2, Operation op) {
+	std::vector<int> bin_1 = vd2b(dec_1);
+	std::vector<int> bin_2 = vd2b(dec_2);
+	std::vector<int> bin_result;
+
+	int tape[19];
+	for (int i = 0; i < 19; i++) {
+		tape[i] = EMPTY;
+	}
+
+	if (op == Operation::ADD) {
+		std::vector<int> bin_result = vd2b(dec_1 + dec_2);
+	}
+	else if (op == Operation::SUB) {
+		std::vector<int> bin_result = vd2b(dec_1 - dec_2);
+	}
+	else if (op == Operation::MUL) {
+		std::vector<int> bin_result = vd2b(dec_1 * dec_2);
+	}
+	else {
+		std::vector<int> bin_result = vd2b(dec_1 / dec_2);
+	}
+
+	if ((bin_1.size() + bin_2.size()) < 17 && bin_result.size() < 17) {
+		for (int i = 0; i < 19; i++) {
+			if (i < bin_1.size()) {
+				tape[i] = bin_1[i];
+			}
+			else if (i == bin_1.size()) {
+				tape[i] = EMPTY;
+			}
+			else if (i > bin_1.size() && i <= (bin_1.size() + bin_2.size())) {
+				tape[i] = bin_2[i - 1 - bin_1.size()];
+			}
+			else if (i > (bin_1.size() + bin_2.size())) {
+				tape[i] = EMPTY;
+			}
+		}
+	}
+	else {
+		std::cout << "Podane liczby sa za duze do tasmy!";
+		return tape;
+	}
+
+	return tape;
+}
+
+
+// Testowe:
+
+/// Przyjmuje dwie liczbê decymaln¹ i robi z niej pointer do taœmy, sprawdzaj¹c, czy siê zmieœci.
+int* NumberConverter::give_tape(int dec) {
+	std::vector<int> bin = vd2b(dec);
+	
+	std::cout << "\n\nTest : ";
+	for (int i = 0; i < bin.size(); i++) {
+		std::cout << bin[i];
+	}
+	std::cout << "\n\n";
+
+	int tape[19];
+	for (int i = 0; i < 19; i++) {
+		tape[i] = EMPTY;
+	}
+
+	if (bin.size() < 17) {
+		for (int i = 0; i < 19; i++) {
+			if (i < bin.size()) {
+				tape[i] = bin[i];
+			}
+			else if (i >= bin.size()) {
+				tape[i] = EMPTY;
+			}
+		}
+	}
+	else {
+		std::cout << "Podana liczba jest za duza do tasmy!";
+		return tape;
+	}
+
+	std::cout << "\n\nTest : ";
+	for (int i = 0; i < 19; i++) {
+		std::cout << tape[i];
+	}
+	std::cout << "\n\n";
+
+	return tape;
 }

@@ -25,12 +25,19 @@ int main() {
 	for (int i = 0; i < vbin.size(); i++) {
 		std::cout << vbin[i];
 	}
+
+	int* tape = convert.give_tape(n);
+	std::cout << "\nPostac tasmy: ";
+	for (int i = 0; i < 19; i++) {
+		std::cout << tape[i];
+	}
+
 	std::cout << "\nPostac liczbowa: " << bin << "\nPostac dziesietna, przekonwertowana: " << dec << "\nPostac dziesietna, z wektora : " << dec_from_v << "\n\n";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////												Test maszyny												////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+/*
 	TuringMachine machine;
 	std::cout << "\nMaszyna stworzona.";
 	machine.Init(vbin, Direction::LEFT);
@@ -39,6 +46,7 @@ int main() {
 	std::cout << "\nWykonano inkrementacjê.";
 
 	std::cout << "Wynik inkrementacji metod¹ maszyny Turinga : " << machine.result() << "\n\n";
+	*/
 	
 	return 0;
 }

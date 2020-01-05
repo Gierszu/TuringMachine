@@ -8,11 +8,15 @@
 
 class NumberConverter {
 public:
-	long long d2b(long long dec);			//  Przyjmuje liczbê decymaln¹ i zwraca liczbê w postaci binarnej
-	long long b2d(long long bin);			//  Przyjmuje liczbê binarn¹ i zwraca liczbê w postaci decymalnej
+	double power(int nr, int exp);
 
+	long long d2b(long long dec);
+	long long b2d(long long bin);
 	long long b2d(std::vector<int> bin);
 	
-	std::vector<int> vd2b(long long dec); //  Przyjmuje liczbê decymaln¹ i zwraca wektor liczby w postaci binarnej
+	std::vector<int> vd2b(long long dec); 
+
+	int* give_tape(int dec_1, int dec_2, Operation op);
+	int* give_tape(int dec);
 };
 

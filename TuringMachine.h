@@ -3,30 +3,45 @@
 #include "DEFINITIONS.h"
 #include "NumberConverter.h"
 
+
 class TuringMachine {
 public:
+	// Pusty konstruktor i dekonstruktor:
 	TuringMachine() {};
+	~TuringMachine() {};
 
-	void Init(std::vector<int> tape, Direction dir);
+	// Inicjalizacja maszyny, nie przez konstruktor, ¿eby mo¿na by³o u¿ywaæ jednej maszyny wiele razy:
+	void Init(int tape[19], Direction dir);
 	
-	void add();
+	// Dzia³ania:
+	void add();				
 	void subtract();
 	void multiply();
 	void divide();
 
+	// Przesy³anie danych:
 	int result();
+	int* get_tape();
+	int get_pos();
+	int get_state();
+	int get_symbol();
 
 	// Testowe:
-	void increment();
+	bool increment();
 private:
-	void read();
-	void write(int newSymbol);
-	void move(Direction dir);
 
-	std::vector<int> _tape;
-	Direction _dir;
+	// Funkcje maszyny:
+	void read();
+	void step(int new_symbol, int new_state, Direction dir);
+
+	// Dane maszyny:
+	int _tape[19];
 	int _pos;
 	int _state;
 	int _symbol;
+	Direction _dir;
+
+	// Testowe:
+	void print();
 };
 

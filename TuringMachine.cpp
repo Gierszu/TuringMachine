@@ -4,117 +4,134 @@
 ////												Dzia³anie												////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void TuringMachine::Init(std::vector<int> tape, Direction dir) {
-	_tape = tape;
+
+/// Inicjalizuje, b¹dŸ resetuje maszynê.
+void TuringMachine::Init(int tape[19], Direction dir) {
+	// Inicjalizowanie zmiennych:
+	_pos = 0;
+	_state = 0;
+	_symbol = EMPTY;
 	_dir = dir;
 
-	_tape.push_back(EMPTY);
-	_tape.insert(_tape.begin(), EMPTY);
+	// Czyszczenie taœmy:
+	for (int i = 0; i < 18; i++) {
+		_tape[i] = EMPTY;
+	}
 
+	// Przypisywanie nowej taœmy, zostawiaj¹c jedno pole puste z przodu i z ty³u:
+	for (int i = 1; i < 17; i++) {
+		_tape[i] = tape[i-1];
+	}
+
+	// Ustawianie pocz¹tkowej pozycji:
 	if (_dir == Direction::LEFT) {
-		_pos = _tape.size() - 1;
+		for (int i = 18; i > 0; i--) {
+			if (_tape[i] != 2 && _pos == 0) {
+				_pos = i;
+			}
+		}
 	}
 	else {
 		_pos = 1;
 	}
-
-	_state = 0;
 }
 
+/// Czyta symbol na swojej pozycji.
 void TuringMachine::read() {
 	_symbol = _tape[_pos];
 }
 
-void TuringMachine::write(int newSymbol) {
-	_tape[_pos] = newSymbol;
-}
-
-void TuringMachine::move(Direction dir) {
+/// Wykonuje jeden krok dzia³ania.
+void TuringMachine::step(int new_symbol, int new_state, Direction dir) {
+	_tape[_pos] = new_symbol;
+	_state = new_state;
 	_dir = dir;
 	
 	if (_dir == Direction::LEFT && _pos > 0) {
 		_pos -= 1;
 	}
-	else if (_dir == Direction::LEFT && _pos < _tape.size()) {
+	else if (_dir == Direction::LEFT && _pos < 18) {
 		_pos += 1;
 	}
 }
 
+/// Zwraca wynik w postaci decymalnej. Do u¿ycia po wykonaniu ca³ego dzia³ania.
 int TuringMachine::result() {
-	_tape.erase(std::remove(_tape.begin(), _tape.end(), EMPTY), _tape.end());
-
 	NumberConverter convert;
+	std::vector<int> vec;
 
-	return convert.b2d(_tape);
+	for (int i = 0; i < 19; i++) {
+		if (_tape[i] != EMPTY) {
+			vec.push_back(_tape[i]);
+		}
+	}
+
+	return convert.b2d(vec);
+}
+
+/// Zwraca pointer do taœmy.
+int* TuringMachine::get_tape() {
+	return _tape;
+}
+
+/// Zwraca pozycjê g³owicy.
+int TuringMachine::get_pos() {
+	return _pos;
+}
+
+/// Zwraca stan maszyny.
+int TuringMachine::get_state() {
+	return _state;
+}
+
+/// Zwraca symbol do wyœwietlenia na g³owicy.
+int TuringMachine::get_symbol() {
+	return _symbol;
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////												Algorytmy												////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void TuringMachine::increment() {
+/// Wykonuje binarn¹ inkrementacjê o 1. Zwraca TRUE przy zakoñczonej pracy.
+bool TuringMachine::increment() {
 	read();
 	std::cout << "\nPrzeczytano symbol.";
 
-	switch (_symbol) {
+	switch (_state) {
 	case 0:
-		switch (_state) {
-		case 0 :
-			write(1);
-			_state = 1;
-			move(Direction::RIGHT);
+		switch (_symbol) {
+		case 0:
+			step(1, 1, Direction::RIGHT);
 			break;
-		case 1 :
-			write(0);
-			_state = 1;
-			move(Direction::RIGHT);
+		case 1:
+			step(0, 0, Direction::LEFT);
 			break;
-		default:
-			return;
+		case EMPTY:
+			step(1, 1, Direction::RIGHT);
 			break;
 		}
 		break;
 	case 1:
-		switch (_state) {
+		switch (_symbol) {
 		case 0:
-			write(0);
-			_state = 0;
-			move(Direction::LEFT);
+			step(0, 1, Direction::RIGHT);
 			break;
 		case 1:
-			write(1);
-			_state = 1;
-			move(Direction::RIGHT);
+			step(1, 1, Direction::RIGHT);
 			break;
-		default:
-			return;
+		case EMPTY:
+			step(EMPTY, 2, Direction::LEFT);
 			break;
 		}
 		break;
-	case EMPTY:
-		switch (_state) {
-		case 0:
-			write(1);
-			_state = 1;
-			move(Direction::RIGHT);
-			break;
-		case 1:
-			write(EMPTY);
-			_state = 2;
-			move(Direction::LEFT);
-			break;
-		default:
-			return;
-			break;
-		}
-		break;
-	default:
-		std::cout << "\n\nPrzeczytano niespodziewany symbol : " << _symbol << " na tasmie w miejscu : " << _pos << " przy stanie : " << _state;
+	case 2:
+		std::cout << "\nDokonano inkrementacji.";
+		return true;
 		break;
 	}
-	std::cout << "\nWykonano program.";
-	increment();
-	std::cout << "\nDokonano inkrementacji.";
+	std::cout << "\nWykonano krok.";
+	return false;
 }
 
 void TuringMachine::add() {
