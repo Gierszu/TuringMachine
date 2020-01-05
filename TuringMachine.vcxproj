@@ -154,6 +154,7 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DEFINITIONS.h" />
     <ClInclude Include="GraphicsEngine.hpp" />
     <ClInclude Include="MainIncludes.h" />
   </ItemGroup>

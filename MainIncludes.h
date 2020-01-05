@@ -11,3 +11,5 @@
 #include <sstream>
 #include <iostream>
 #include <string>
+#include "DEFINITIONS.h"
+#include <cmath>
