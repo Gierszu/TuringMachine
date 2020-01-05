@@ -11,7 +11,7 @@ int main() {
 
 	long long n;
 	
-	std::cout << "Wprowadz liczbe do konwersji do binarnych: ";
+	std::cout << "Wprowadz liczbe do konwersji do binarnych oraz binarnej inkrementacji metoda maszyny Turinga: ";
 	std::cin >> n;
 	std::vector<int> vbin;
 	long long bin, dec, dec_from_v;
@@ -21,7 +21,7 @@ int main() {
 	dec = convert.b2d(bin);
 	dec_from_v = convert.b2d(vbin);
 	
-	std::cout << "\nPostac wektorowa: ";
+	std::cout << "\nKonwersja do postaci wektorowej: ";
 	for (int i = 0; i < vbin.size(); i++) {
 		std::cout << vbin[i];
 	}
@@ -32,26 +32,30 @@ int main() {
 	}
 
 	int* tape = convert.give_tape(actual_tape, n);
-	std::cout << "\nPostac tasmy: ";
+	std::cout << "\nKonwersja do postaci tasmy: ";
 	for (int i = 0; i < 19; i++) {
 		std::cout << tape[i];
 	}
 
-	std::cout << "\nPostac liczbowa: " << bin << "\nPostac dziesietna, przekonwertowana: " << dec << "\nPostac dziesietna, z wektora : " << dec_from_v << "\n\n";
+	std::cout << "\nKonwersja do postaci liczbowej: " << bin << "\nDekonwersja do postaci dziesietnej: " << dec << "\nDekonwersja do postaci dziesietnej, z wektora binarnego: " << dec_from_v << "\n\n";
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////												Test maszyny												////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/*
-	TuringMachine machine;
-	std::cout << "\nMaszyna stworzona.";
-	machine.Init(vbin, Direction::LEFT);
-	std::cout << "\nMaszyna zainicjalizowana.";
-	machine.increment();
-	std::cout << "\nWykonano inkrementacjê.";
 
-	std::cout << "Wynik inkrementacji metod¹ maszyny Turinga : " << machine.result() << "\n\n";
-	*/
+	TuringMachine machine;
+	std::cout << "\n\nMain : Maszyna stworzona.";
+	machine.Init(tape, Direction::LEFT);
+	std::cout << "\n\nMain : Maszyna zainicjalizowana.";
+	
+	int is_complete = 0;
+	while (is_complete == 0) {
+		is_complete = machine.increment();
+	}
+
+	std::cout << "\nMain : Wykonano inkrementacje.";
+
+	std::cout << "\nMain : Wynik inkrementacji metoda maszyny Turinga : " << machine.result() << "\n\n";
 	
 	return 0;
 }

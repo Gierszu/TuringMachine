@@ -102,7 +102,7 @@ int* NumberConverter::give_tape(int tape[19], int dec_1, int dec_2, Operation op
 		}
 	}
 	else {
-		std::cout << "Podane liczby sa za duze do tasmy!";
+		std::cout << "\nERROR - Podane liczby sa za duze do tasmy! Podaje pusta tasme.";
 		return tape;
 	}
 
@@ -116,7 +116,7 @@ int* NumberConverter::give_tape(int tape[19], int dec_1, int dec_2, Operation op
 int* NumberConverter::give_tape(int tape[19],int dec) {
 	std::vector<int> bin = vd2b(dec);
 
-	if (bin.size() < 17) {
+	if (bin.size() < 18) {
 		for (int i = 0; i < 19; i++) {
 			if (i < bin.size()) {
 				tape[i] = bin[i];
@@ -127,7 +127,7 @@ int* NumberConverter::give_tape(int tape[19],int dec) {
 		}
 	}
 	else {
-		std::cout << "Podana liczba jest za duza do tasmy!";
+		std::cout << "\nERROR - Podana liczba jest za duza do tasmy! Podaje pusta tasme.";
 		return tape;
 	}
 	return tape;

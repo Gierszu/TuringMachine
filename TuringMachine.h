@@ -43,5 +43,6 @@ private:
 
 	// Testowe:
 	void print();
+	void state();
 };
 
