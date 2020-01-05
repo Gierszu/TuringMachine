@@ -8,3 +8,6 @@
 #include <math.h>
 #include <vector>
 #include <Windows.h>
+#include <sstream>
+#include <iostream>
+#include <string>
