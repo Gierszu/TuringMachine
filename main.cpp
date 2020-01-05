@@ -1,24 +1,19 @@
-#include <SFML/Graphics.hpp>
-//henl0
+#include "MainIncludes.h"
+
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
-    while (window.isOpen())
+    //Test;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    int costam[19] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    int* pointer = costam;
+    CGraphics graphic;
+    while (graphic.window.isOpen())
     {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
+        
+        graphic.drawAll();
+        graphic.sync(pointer, 18, 0); //(pointer to tape's array, position(0-18),pointer's value)
+        graphic.controls();
 
-        window.clear();
-        window.draw(shape);
-        window.display();
     }
-
+ 
     return 0;
 }
