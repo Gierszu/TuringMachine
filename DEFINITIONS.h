@@ -1,6 +1,6 @@
 #pragma once
 
-//   Plik, do którego nale¿y wrzucaæ wszystkie #define i sta³e, które bêd¹ u¿ywane wiele razy, jak np. œcie¿ki plików itp. ¿eby móc zmieniæ to tylko tu i mieæ zmienione wszêdzie.
+//   Plik, do ktÃ³rego naleÅ¼y wrzucaÄ‡ wszystkie #define i staÅ‚e, ktÃ³re bÄ™dÄ… uÅ¼ywane wiele razy, jak np. Å›cieÅ¼ki plikÃ³w itp. Å¼eby mÃ³c zmieniÄ‡ to tylko tu i mieÄ‡ zmienione wszÄ™dzie.
 
 constexpr auto EMPTY = 999;
 
