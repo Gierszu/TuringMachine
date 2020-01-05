@@ -14,10 +14,10 @@ public:
 	void Init(int tape[19], Direction dir);
 	
 	// Dzia³ania:
-	void add();				
-	void subtract();
-	void multiply();
-	void divide();
+	bool add();				
+	bool subtract();
+	bool multiply();
+	bool divide();
 
 	// Przesy³anie danych:
 	int result();
