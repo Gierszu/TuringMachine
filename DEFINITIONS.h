@@ -1,8 +1,8 @@
 #pragma once
 
-//   Plik, do ktÃ³rego naleÅ¼y wrzucaÄ‡ wszystkie #define i staÅ‚e, ktÃ³re bÄ™dÄ… uÅ¼ywane wiele razy, jak np. Å›cieÅ¼ki plikÃ³w itp. Å¼eby mÃ³c zmieniÄ‡ to tylko tu i mieÄ‡ zmienione wszÄ™dzie.
+//   Plik, do którego nale¿y wrzucaæ wszystkie #define i sta³e, które bêd¹ u¿ywane wiele razy, jak np. œcie¿ki plików itp. ¿eby móc zmieniæ to tylko tu i mieæ zmienione wszêdzie.
 
-constexpr auto EMPTY = 999;
+constexpr auto EMPTY = 2;
 
-enum class Direction {LEFT, RIGHT, STOP};
-enum class Operation {ADD, SUB, MUL, DIV};
+enum class Direction { LEFT, RIGHT, STOP };
+enum class Operation { ADD, SUB, MUL, DIV };
