@@ -11,7 +11,7 @@ int main() {
 
 	long long n;
 	
-	std::cout << "Wprowadz liczbe do konwersji do binarnych oraz binarnej inkrementacji metoda maszyny Turinga:  ";
+	std::cout << "Wprowadz liczbe do konwersji do binarnych oraz binarnej inkrementacji metoda maszyny Turinga: ";
 	std::cin >> n;
 	std::vector<int> vbin;
 	long long bin, dec, dec_from_v;
