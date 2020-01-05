@@ -450,16 +450,17 @@ bool TuringMachine::add() {
 		return true;
 		break;
 	}
+	return true;
 }
 
 bool TuringMachine::subtract() {
-
+	return true;
 }
 
 bool TuringMachine::multiply() {
-
+	return true;
 }
 
 bool TuringMachine::divide() {
-
+	return true;
 }
