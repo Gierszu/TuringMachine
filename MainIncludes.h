@@ -1,8 +1,9 @@
 #pragma once
 
 
-//  Plik, do ktÃ³rego naleÂ¿y wrzucaÃ¦ wszystkie #include do main.cpp, Â¿eby go nie zaÅ“mieciÃ¦.
+//  Plik, do którego nale¿y wrzucaæ wszystkie #include do main.cpp, ¿eby go nie zaœmieciæ.
 
+#include "GraphicsEngine.hpp"
 #include <iostream>
 #include <math.h>
 #include <vector>
@@ -10,9 +11,5 @@
 #include <sstream>
 #include <iostream>
 #include <string>
-#include <cmath>
-
 #include "DEFINITIONS.h"
-#include "GraphicsEngine.hpp"
-#include"NumberConverter.h"
-#include"TuringMachine.h"
+#include <cmath>
