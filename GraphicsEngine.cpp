@@ -110,7 +110,7 @@ CGraphics::CGraphics()
 	//equation 
 	this->FIRST_VALUE = 0;
 	this->SECOND_VALUE = 0;
-	this->OPERATION = 0;
+	this->OPERATION = Operation::ADD;
 	this->entryCounter = 0;
 	operationText1.setFont(font);
 	operationText1.setCharacterSize(40);
@@ -441,28 +441,28 @@ void CGraphics::controls()
 		{
 			if(writing==0)entryCounter = 0;
 			writing = 1;
-			OPERATION = 0;
+			OPERATION = Operation::ADD;
 			signText.setString("+");
 		}
 		if (pointer_x == 3 && pointer_y == 1)//-
 		{
 			if (writing == 0)entryCounter = 0;
 			writing = 1;
-			OPERATION = 1;
+			OPERATION = Operation::SUB;
 			signText.setString("-");
 		}
 		if (pointer_x == 3 && pointer_y == 2)//*
 		{
 			if (writing == 0)entryCounter = 0;
 			writing = 1;
-			OPERATION = 2;
+			OPERATION = Operation::MUL;
 			signText.setString("*");
 		}
 		if (pointer_x == 3 && pointer_y == 3)//'/'
 		{
 			if (writing == 0)entryCounter = 0;
 			writing = 1;
-			OPERATION = 3;
+			OPERATION = Operation::DIV;
 			signText.setString("/");
 		}
 		Sleep(250);

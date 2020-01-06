@@ -89,8 +89,8 @@ int main() {
 	std::cout << "\nMain : Wykonano inkrementacje.";
 
 	std::cout << "\nMain : Wynik inkrementacji metoda maszyny Turinga : " << machine.result() << "\n\n";
-	*/
 
+	*/
 	
 
 }

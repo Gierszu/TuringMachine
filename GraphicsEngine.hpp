@@ -56,7 +56,7 @@ public:
 	std::string ptString;
 	int FIRST_VALUE;//
 	int SECOND_VALUE;// ENTRY 
-	int OPERATION;//
+	Operation OPERATION;//
 	bool writing; //0 writing to first value, 1 writing to 2nd value
 	int entryCounter;// for decimal conversion
 	int pointer_x;//location on panels
