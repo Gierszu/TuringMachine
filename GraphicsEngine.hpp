@@ -61,6 +61,9 @@ public:
 	int entryCounter;// for decimal conversion
 	int pointer_x;//location on panels
 	int pointer_y;//
+
+	bool SEND; // 1 to send values to machine
+
 	sf::Text operationText1;//
 	sf::Text operationText2;// for text box
 	sf::Text signText;//
