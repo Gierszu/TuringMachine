@@ -65,7 +65,7 @@ long long NumberConverter::b2d(std::vector<int> bin) {
 }
 
 /// Przyjmuje dwie liczby decymalne i dzia³anie i robi z nich pointer do taœmy, sprawdzaj¹c, czy obie siê zmieszcz¹, oraz czy wynik dzia³ania siê zmieœci.
-int* NumberConverter::give_tape(int tape[19], int dec_1, int dec_2, Operation op) {
+int* NumberConverter::give_tape(int tape[40], int dec_1, int dec_2, Operation op) {
 	std::vector<int> bin_1 = vd2b(dec_1);
 	std::vector<int> bin_2 = vd2b(dec_2);
 	std::vector<int> bin_result;
@@ -87,8 +87,8 @@ int* NumberConverter::give_tape(int tape[19], int dec_1, int dec_2, Operation op
 		return tape;
 	}
 
-	if ((bin_1.size() + bin_2.size()) < 18 && bin_result.size() < 18) {
-		for (int i = 0; i < 19; i++) {
+	if ((bin_1.size() + bin_2.size()) < 39 && bin_result.size() < 39) {
+		for (int i = 0; i < 40; i++) {
 			if (i < bin_1.size()) {
 				tape[i] = bin_1[i];
 			}
@@ -115,11 +115,11 @@ int* NumberConverter::give_tape(int tape[19], int dec_1, int dec_2, Operation op
 // Testowe:
 
 /// Przyjmuje dwie liczbê decymaln¹ i robi z niej pointer do taœmy, sprawdzaj¹c, czy siê zmieœci.
-int* NumberConverter::give_tape(int tape[19],int dec) {
+int* NumberConverter::give_tape(int tape[40],int dec) {
 	std::vector<int> bin = vd2b(dec);
 
-	if (bin.size() < 18) {
-		for (int i = 0; i < 19; i++) {
+	if (bin.size() < 39) {
+		for (int i = 0; i < 40; i++) {
 			if (i < bin.size()) {
 				tape[i] = bin[i];
 			}

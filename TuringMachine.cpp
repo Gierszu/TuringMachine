@@ -6,7 +6,7 @@
 
 
 /// Inicjalizuje, b¹dŸ resetuje maszynê.
-void TuringMachine::Init(int tape[19], Direction dir) {
+void TuringMachine::Init(int tape[40], Direction dir) {
 	std::cout << "\n\nMasszyna Turinga utworzona. Inicjalizowanie zmiennych...";
 	
 	// Inicjalizowanie zmiennych:
@@ -18,7 +18,7 @@ void TuringMachine::Init(int tape[19], Direction dir) {
 	std::cout << "\nZmienne zainicjalizowane. Czyszczenie tasmy...";
 
 	// Czyszczenie taœmy:
-	for (int i = 0; i < 19; i++) {
+	for (int i = 0; i < 40; i++) {
 		_tape[i] = EMPTY;
 	}
 
@@ -26,9 +26,9 @@ void TuringMachine::Init(int tape[19], Direction dir) {
 
 	std::cout << "\nTasma wyczyszczona. Przygotowywanie tasmy pod obliczenia...";
 
-	// Przypisywanie nowej taœmy, zostawiaj¹c dwa pola puste z przodu:
-	for (int i = 2; i < 19; i++) {
-		_tape[i] = tape[i-2];
+	// Przypisywanie nowej taœmy, zostawiaj¹c szesnascie pol pustych z przodu:
+	for (int i = 16; i < 40; i++) {
+		_tape[i] = tape[i-16];
 	}
 
 	state();
@@ -37,7 +37,7 @@ void TuringMachine::Init(int tape[19], Direction dir) {
 
 	// Ustawianie pocz¹tkowej pozycji:
 	if (_dir == Direction::LEFT) {
-		for (int i = 18; i > 0; i--) {
+		for (int i = 39; i > 0; i--) {
 			if (_tape[i] != EMPTY && _pos == 0) {
 				_pos = i;
 				state();
@@ -45,7 +45,7 @@ void TuringMachine::Init(int tape[19], Direction dir) {
 		}
 	}
 	else {
-		_pos = 2;
+		_pos = 16;
 		state();
 	}
 
@@ -57,7 +57,7 @@ void TuringMachine::Setup(int dec_1, int dec_2, Operation op) {
 	_op = op;
 	
 	NumberConverter convert;
-	int actual_tape[19];
+	int actual_tape[40];
 	int* tape;
 	tape = convert.give_tape(actual_tape, dec_1, dec_2, op);
 
@@ -85,7 +85,7 @@ void TuringMachine::Setup(int dec, Operation op) {
 	_op = op;
 
 	NumberConverter convert;
-	int actual_tape[19];
+	int actual_tape[40];
 	int* tape;
 	tape = convert.give_tape(actual_tape, dec);
 
@@ -141,7 +141,7 @@ void TuringMachine::_step(int new_symbol, int new_state, Direction dir) {
 	if (_dir == Direction::LEFT && _pos > 0) {
 		_pos -= 1;
 	}
-	else if (_dir == Direction::RIGHT && _pos < 18) {
+	else if (_dir == Direction::RIGHT && _pos < 39) {
 		_pos += 1;
 	}
 }
@@ -151,7 +151,7 @@ int TuringMachine::result() {
 	NumberConverter convert;
 	std::vector<int> vec;
 
-	for (int i = 0; i < 19; i++) {
+	for (int i = 0; i < 40; i++) {
 		if (_tape[i] != EMPTY) {
 			vec.push_back(_tape[i]);
 		}
@@ -183,7 +183,7 @@ int TuringMachine::get_symbol() {
 /// Wyœwietla zawartoœæ taœmy.
 void TuringMachine::print() {
 	std::cout << "\n|";
-	for (int i = 0; i < 19; i++) {
+	for (int i = 0; i < 40; i++) {
 		std::cout << _tape[i] << "|";
 	}
 	std::cout << "\n";
@@ -259,10 +259,7 @@ bool TuringMachine::increment() {
 	}
 	std::cout << "\nWykonano krok. Stan tasmy : ";
 
-	for (int i = 0; i < 19; i++) {
-		std::cout << _tape[i];
-	}
-
+	state();
 	return false;
 }
 
