@@ -290,6 +290,7 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 1:
 		switch (_symbol) {
 		case EMPTY:
@@ -313,6 +314,7 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 2:
 		switch (_symbol) {
 		case EMPTY:
@@ -336,6 +338,7 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 3:
 		switch (_symbol) {
 		case EMPTY:
@@ -353,6 +356,7 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 4:
 		switch (_symbol) {
 		case EMPTY:
@@ -376,6 +380,7 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 5:
 		switch (_symbol) {
 		case EMPTY:
@@ -399,6 +404,7 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 6:
 		switch (_symbol) {
 		case EMPTY:
@@ -422,6 +428,7 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 7:
 		switch (_symbol) {
 		case EMPTY:
@@ -445,6 +452,7 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 10:
 		switch (_symbol) {
 		case EMPTY:
@@ -468,6 +476,7 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 11:
 		switch (_symbol) {
 		case EMPTY:
@@ -491,8 +500,9 @@ bool TuringMachine::add() {
 			return true;
 			break;
 		}
+		break;
 	case 99:
-		std::cout << "\nDodawanie zakoñczone.";
+		std::cout << "\nDodawanie zakonczone.";
 		return true;
 		break;
 	default:
@@ -500,7 +510,7 @@ bool TuringMachine::add() {
 		return true;
 		break;
 	}
-	return true;
+	return false;
 }
 
 bool TuringMachine::subtract() {
