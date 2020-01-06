@@ -1,6 +1,8 @@
 #include "NumberConverter.hpp"
 #include "DEFINITIONS.h"
 
+
+
 /// W razie jakby pow() nie dzia³a³o jak chcemy.
 double NumberConverter::power(int nr, int exp) {
 	double out = 1;

@@ -1,7 +1,7 @@
 #include "GraphicsEngine.hpp"
 
 
-
+extern NumberConverter convert;
 
 CSquare::CSquare(sf::Texture* texture,int x, int y)
 {
@@ -130,6 +130,7 @@ CGraphics::CGraphics()
 	textBox.setTexture(texture);
 	textBox.setTextureRect(sf::IntRect(0, 131, 300, 44));
 	textBox.setPosition(588, 405);
+	this->SEND = 0;
 	
 }
 
@@ -197,7 +198,7 @@ void CGraphics::sync(int* tape, int position, int value)
 		case 1:
 			squares[i].value.setString("1");
 			break;
-		case 2:
+		case 999:
 			squares[i].value.setString(" ");
 			break;
 		}
@@ -431,10 +432,10 @@ void CGraphics::controls()
 				operationText2.setString(std::to_string(SECOND_VALUE));
 			}
 		}
-		if (pointer_x == 2 && pointer_y == 3)//=
+		if (pointer_x == 2 && pointer_y == 3)//= ///////////////////////////////////////////////
 		{
 			std::cout << "="; //DO CRAZY MACHINE THING
-			
+			SEND = 1;
 		}
 		if (pointer_x == 3 && pointer_y == 0)//+
 		{
