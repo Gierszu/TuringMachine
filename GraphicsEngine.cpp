@@ -110,7 +110,7 @@ CGraphics::CGraphics()
 	//equation 
 	this->FIRST_VALUE = 0;
 	this->SECOND_VALUE = 0;
-	this->OPERATION = Operation::ADD;
+	this->OPERATION = Operation::INC;
 	this->entryCounter = 0;
 	operationText1.setFont(font);
 	operationText1.setCharacterSize(40);
