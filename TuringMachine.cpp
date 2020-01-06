@@ -519,8 +519,7 @@ bool TuringMachine::subtract() {
 }
 
 bool TuringMachine::multiply() {
-	std::cout << "\n\nERROR - Dzia³anie nie posiada gotowego algorytmu. Koñczenie pracy.";
-	return true;
+
 
 	switch (_state) {
 	case 0:
