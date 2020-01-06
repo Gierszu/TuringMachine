@@ -27,8 +27,8 @@ void TuringMachine::Init(int tape[40], Direction dir) {
 	std::cout << "\nTasma wyczyszczona. Przygotowywanie tasmy pod obliczenia...";
 
 	// Przypisywanie nowej taœmy, zostawiaj¹c szesnascie pol pustych z przodu:
-	for (int i = 16; i < 40; i++) {
-		_tape[i] = tape[i-16];
+	for (int i = 20; i < 40; i++) {
+		_tape[i] = tape[i-20];
 	}
 
 	state();
@@ -45,7 +45,7 @@ void TuringMachine::Init(int tape[40], Direction dir) {
 		}
 	}
 	else {
-		_pos = 16;
+		_pos = 20;
 		state();
 	}
 
