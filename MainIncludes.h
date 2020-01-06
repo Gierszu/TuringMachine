@@ -3,6 +3,8 @@
 
 //  Plik, do którego nale¿y wrzucaæ wszystkie #include do main.cpp, ¿eby go nie zaœmieciæ.
 
+#include "GraphicsEngine.hpp"
+
 #include <iostream>
 #include <math.h>
 #include <vector>
@@ -13,6 +15,5 @@
 #include <cmath>
 
 #include "DEFINITIONS.h"
-#include "GraphicsEngine.hpp"
 #include"NumberConverter.hpp"
 #include"TuringMachine.hpp"
