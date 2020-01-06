@@ -292,19 +292,19 @@ bool TuringMachine::add() {
 	case 1:
 		switch (_symbol) {
 		case EMPTY:
-
+			_step(EMPTY, 2, Direction::LEFT);
 			break;
 		case 0:
-
+			_step(0, 1, Direction::LEFT);
 			break;
 		case 1:
-
+			_step(1, 1, Direction::LEFT);
 			break;
 		case 2:
-
+			_step(2, 1, Direction::LEFT);
 			break;
 		case 3:
-
+			_step(3, 1, Direction::LEFT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
@@ -315,19 +315,19 @@ bool TuringMachine::add() {
 	case 2:
 		switch (_symbol) {
 		case EMPTY:
-
+			_step(3, 4, Direction::RIGHT);
 			break;
 		case 0:
-
+			_step(3, 4, Direction::RIGHT);
 			break;
 		case 1:
-
+			_step(2, 3, Direction::LEFT);
 			break;
 		case 2:
-
+			_step(2, 2, Direction::LEFT);
 			break;
 		case 3:
-
+			_step(3, 2, Direction::LEFT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
@@ -338,19 +338,13 @@ bool TuringMachine::add() {
 	case 3:
 		switch (_symbol) {
 		case EMPTY:
-
+			_step(1, 4, Direction::RIGHT);
 			break;
 		case 0:
-
+			_step(1, 4, Direction::RIGHT);
 			break;
 		case 1:
-
-			break;
-		case 2:
-
-			break;
-		case 3:
-
+			_step(0, 3, Direction::LEFT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
@@ -361,19 +355,19 @@ bool TuringMachine::add() {
 	case 4:
 		switch (_symbol) {
 		case EMPTY:
-
+			_step(EMPTY, 5, Direction::RIGHT);
 			break;
 		case 0:
-
+			_step(0, 4, Direction::RIGHT);
 			break;
 		case 1:
-
+			_step(1, 4, Direction::RIGHT);
 			break;
 		case 2:
-
+			_step(2, 4, Direction::RIGHT);
 			break;
 		case 3:
-
+			_step(3, 4, Direction::RIGHT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
@@ -384,19 +378,19 @@ bool TuringMachine::add() {
 	case 5:
 		switch (_symbol) {
 		case EMPTY:
-
+			_step(EMPTY, 0, Direction::LEFT);
 			break;
 		case 0:
-
+			_step(0, 5, Direction::RIGHT);
 			break;
 		case 1:
-
+			_step(1, 5, Direction::RIGHT);
 			break;
 		case 2:
-
+			_step(2, 5, Direction::RIGHT);
 			break;
 		case 3:
-
+			_step(3, 5, Direction::RIGHT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
@@ -407,19 +401,19 @@ bool TuringMachine::add() {
 	case 6:
 		switch (_symbol) {
 		case EMPTY:
-
+			_step(EMPTY, 7, Direction::LEFT);
 			break;
 		case 0:
-
+			_step(0, 6, Direction::LEFT);
 			break;
 		case 1:
-
+			_step(1, 6, Direction::LEFT);
 			break;
 		case 2:
-
+			_step(2, 6, Direction::LEFT);
 			break;
 		case 3:
-
+			_step(3, 6, Direction::LEFT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
@@ -430,19 +424,19 @@ bool TuringMachine::add() {
 	case 7:
 		switch (_symbol) {
 		case EMPTY:
-
+			_step(2, 4, Direction::RIGHT);
 			break;
 		case 0:
-
+			_step(2, 4, Direction::RIGHT);
 			break;
 		case 1:
-
+			_step(3, 4, Direction::RIGHT);
 			break;
 		case 2:
-
+			_step(2, 7, Direction::LEFT);
 			break;
 		case 3:
-
+			_step(3, 7, Direction::LEFT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
@@ -453,19 +447,19 @@ bool TuringMachine::add() {
 	case 10:
 		switch (_symbol) {
 		case EMPTY:
-
+			_step(EMPTY, 11, Direction::RIGHT);
 			break;
 		case 0:
-
+			_step(0, 11, Direction::RIGHT);
 			break;
 		case 1:
-
+			_step(1, 11, Direction::RIGHT);
 			break;
 		case 2:
-
+			_step(0, 10, Direction::LEFT);
 			break;
 		case 3:
-
+			_step(1, 10, Direction::LEFT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
@@ -476,19 +470,19 @@ bool TuringMachine::add() {
 	case 11:
 		switch (_symbol) {
 		case EMPTY:
-
+			_step(EMPTY, 99, Direction::LEFT);
 			break;
 		case 0:
-
+			_step(0, 11, Direction::RIGHT);
 			break;
 		case 1:
-
+			_step(1, 11, Direction::RIGHT);
 			break;
 		case 2:
-
+			_step(2, 11, Direction::RIGHT);
 			break;
 		case 3:
-
+			_step(3, 11, Direction::RIGHT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
@@ -497,28 +491,9 @@ bool TuringMachine::add() {
 			break;
 		}
 	case 99:
-		switch (_symbol) {
-		case EMPTY:
-
-			break;
-		case 0:
-
-			break;
-		case 1:
-
-			break;
-		case 2:
-
-			break;
-		case 3:
-
-			break;
-		default:
-			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
-			state();
-			return true;
-			break;
-		}
+		std::cout << "\nDodawanie zakoñczone.";
+		return true;
+		break;
 	default:
 		std::cout << "ERROR - Nierozpoznany stan.";
 		return true;
@@ -528,13 +503,18 @@ bool TuringMachine::add() {
 }
 
 bool TuringMachine::subtract() {
+	std::cout << "\n\nERROR - Dzia³anie nie posiada gotowego algorytmu. Koñczenie pracy.";
 	return true;
 }
 
 bool TuringMachine::multiply() {
+	std::cout << "\n\nERROR - Dzia³anie nie posiada gotowego algorytmu. Koñczenie pracy.";
 	return true;
+
+
 }
 
 bool TuringMachine::divide() {
+	std::cout << "\n\nERROR - Dzia³anie nie posiada gotowego algorytmu. Koñczenie pracy.";
 	return true;
 }
