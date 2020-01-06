@@ -131,6 +131,15 @@ CGraphics::CGraphics()
 	textBox.setTextureRect(sf::IntRect(0, 131, 300, 44));
 	textBox.setPosition(588, 405);
 	this->SEND = 0;
+	textBox2.setTexture(texture);
+	textBox2.setTextureRect(sf::IntRect(0, 131, 300, 44));
+	textBox2.setPosition(588, 455);
+	resultText.setFont(font);
+	resultText.setCharacterSize(40);
+	resultText.setFillColor(sf::Color::White);
+	resultText.setPosition(620, 450);
+	resultText.setString("Result");
+	
 	
 }
 
@@ -183,6 +192,8 @@ void CGraphics::drawAll()
 	window.draw(operationText1);
 	window.draw(operationText2);
 	window.draw(signText);
+	window.draw(textBox2);
+	window.draw(resultText);
 
 	window.display();
 }
