@@ -12,12 +12,13 @@ public:
 
 	// Inicjalizacja maszyny, nie przez konstruktor, ¿eby mo¿na by³o u¿ywaæ jednej maszyny wiele razy:
 	void Init(int tape[19], Direction dir);
-	
-	// Dzia³ania:
-	bool add();				
-	bool subtract();
-	bool multiply();
-	bool divide();
+
+	// Funkcja odbieraj¹ca zmienne od u¿ytkownika i przygotowuj¹ca dzia³anie maszyny.
+	void Setup(int dec_1, int dec_2, Operation op);
+	void Setup(int dec, Operation op);
+
+	// Robi kolejny krok obliczeñ. Zwraca TRUE, gdy nie bêdzie ju¿ kroku do wykonania.
+	bool Step();
 
 	// Przesy³anie danych:
 	int result();
@@ -32,7 +33,7 @@ private:
 
 	// Funkcje maszyny:
 	void read();
-	void step(int new_symbol, int new_state, Direction dir);
+	void _step(int new_symbol, int new_state, Direction dir);
 
 	// Dane maszyny:
 	int _tape[19];
@@ -40,6 +41,14 @@ private:
 	int _state;
 	int _symbol;
 	Direction _dir;
+
+	Operation _op;
+
+	// Dzia³ania:
+	bool add();
+	bool subtract();
+	bool multiply();
+	bool divide();
 
 	// Testowe:
 	void print();

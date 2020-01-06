@@ -5,4 +5,4 @@
 constexpr auto EMPTY =999;
 
 enum class Direction {LEFT, RIGHT, STOP};
-enum class Operation {ADD, SUB, MUL, DIV};
+enum class Operation {ADD, SUB, MUL, DIV, INC};

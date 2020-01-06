@@ -85,7 +85,7 @@ int* NumberConverter::give_tape(int tape[19], int dec_1, int dec_2, Operation op
 		return tape;
 	}
 
-	if ((bin_1.size() + bin_2.size()) < 17 && bin_result.size() < 17) {
+	if ((bin_1.size() + bin_2.size()) < 18 && bin_result.size() < 18) {
 		for (int i = 0; i < 19; i++) {
 			if (i < bin_1.size()) {
 				tape[i] = bin_1[i];

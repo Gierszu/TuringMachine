@@ -52,13 +52,86 @@ void TuringMachine::Init(int tape[19], Direction dir) {
 	std::cout << "\nPoczatkowa pozycja ustalona : " << _pos << "\nMaszyna zainicjalizowana.\n";
 }
 
+/// Zbiera dane od u¿ytkownika i na ich podstawie przygotowuje maszynê do pracy.
+void TuringMachine::Setup(int dec_1, int dec_2, Operation op) {
+	_op = op;
+	
+	NumberConverter convert;
+	int* tape;
+	tape = convert.give_tape(_tape, dec_1, dec_2, op);
+
+	switch (_op) {
+	case Operation::ADD:
+		Init(tape, Direction::LEFT);
+		break;
+	case Operation::SUB:
+		Init(tape, Direction::LEFT);
+		break;
+	case Operation::MUL:
+		Init(tape, Direction::LEFT);
+		break;
+	case Operation::DIV:
+		Init(tape, Direction::LEFT);
+		break;
+	default:
+		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o siê ustawiæ maszyny.\n\n";
+		return;
+		break;
+	}
+}
+
+void TuringMachine::Setup(int dec, Operation op) {
+	_op = op;
+
+	NumberConverter convert;
+	int* tape;
+	tape = convert.give_tape(_tape, dec);
+
+	switch (_op) {
+	case Operation::INC:
+		Init(tape, Direction::LEFT);
+		break;
+	default:
+		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o siê ustawiæ maszyny.\n\n";
+		return;
+		break;
+	}
+}
+
+bool TuringMachine::Step() {
+	switch (_op) {
+	case Operation::ADD:
+		return add();
+		break;
+	case Operation::SUB:
+		return subtract();
+		break;
+	case Operation::MUL:
+		return multiply();
+		break;
+	case Operation::DIV:
+		return divide();
+		break;
+	case Operation::INC:
+		return increment();
+		break;
+	default:
+		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o siê wykonaæ kroku.\n\n";
+		return true;
+		break;
+	}
+
+	std::cout << "ERROR - Wyszed³em poza switcha w Step()!";
+	return true;
+}
+
 /// Czyta symbol na swojej pozycji.
 void TuringMachine::read() {
 	_symbol = _tape[_pos];
 }
 
 /// Wykonuje jeden krok dzia³ania.
-void TuringMachine::step(int new_symbol, int new_state, Direction dir) {
+void TuringMachine::_step(int new_symbol, int new_state, Direction dir) {
 	_tape[_pos] = new_symbol;
 	_state = new_state;
 	_dir = dir;
@@ -135,15 +208,15 @@ bool TuringMachine::increment() {
 	case 0:
 		switch (_symbol) {
 		case 0:
-			step(1, 1, Direction::RIGHT);
+			_step(1, 1, Direction::RIGHT);
 			state();
 			break;
 		case 1:
-			step(0, 0, Direction::LEFT);
+			_step(0, 0, Direction::LEFT);
 			state();
 			break;
 		case EMPTY:
-			step(1, 1, Direction::RIGHT);
+			_step(1, 1, Direction::RIGHT);
 			state();
 			break;
 		default:
@@ -155,15 +228,15 @@ bool TuringMachine::increment() {
 	case 1:
 		switch (_symbol) {
 		case 0:
-			step(0, 1, Direction::RIGHT);
+			_step(0, 1, Direction::RIGHT);
 			state();
 			break;
 		case 1:
-			step(1, 1, Direction::RIGHT);
+			_step(1, 1, Direction::RIGHT);
 			state();
 			break;
 		case EMPTY:
-			step(EMPTY, 2, Direction::LEFT);
+			_step(EMPTY, 2, Direction::LEFT);
 			state();
 			break;
 		default:
@@ -201,13 +274,13 @@ bool TuringMachine::add() {
 	case 0:
 		switch (_symbol) {
 		case 0:
-			step(EMPTY, 6, Direction::LEFT);
+			_step(EMPTY, 6, Direction::LEFT);
 			break;
 		case 1:
-			step(EMPTY, 1, Direction::LEFT);
+			_step(EMPTY, 1, Direction::LEFT);
 			break;
 		case EMPTY:
-			step(EMPTY, 10, Direction::LEFT);
+			_step(EMPTY, 10, Direction::LEFT);
 			break;
 		default:
 			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";

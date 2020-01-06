@@ -13,7 +13,10 @@ int main() {
 		graphic.drawAll();
 		graphic.sync(pointer, 18, 0); //(pointer to tape's array, position(0-18),pointer's value)
 		graphic.controls();
+
 	}
+
+	/*
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	////												Test konwertera												////
@@ -60,14 +63,16 @@ int main() {
 	machine.Init(tape, Direction::LEFT);
 	std::cout << "\n\nMain : Maszyna zainicjalizowana.";
 
-	int is_complete = 0;
-	while (is_complete == 0) {
+	bool is_complete = false;
+	while (is_complete == false) {
 		is_complete = machine.increment();
 	}
 
 	std::cout << "\nMain : Wykonano inkrementacje.";
 
 	std::cout << "\nMain : Wynik inkrementacji metoda maszyny Turinga : " << machine.result() << "\n\n";
+
+	*/
 	
 	return 0;
 
