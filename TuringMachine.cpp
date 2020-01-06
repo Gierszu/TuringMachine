@@ -511,7 +511,968 @@ bool TuringMachine::multiply() {
 	std::cout << "\n\nERROR - Dzia³anie nie posiada gotowego algorytmu. Koñczenie pracy.";
 	return true;
 
+	switch (_state) {
+	case 0:
+		switch (_symbol) {
+		case EMPTY:
 
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 1:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 2:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 3:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 10:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 11:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 12:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 15:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 16:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 17:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 20:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 21:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 22:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 23:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 24:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 25:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 26:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 27:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 28:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 30:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 31:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 32:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 33:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 34:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 35:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 36:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 37:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 40:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 41:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 42:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 43:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 99:
+		switch (_symbol) {
+		case EMPTY:
+
+			break;
+		case 0:
+
+			break;
+		case 1:
+
+			break;
+		case 2:
+
+			break;
+		case 3:
+
+			break;
+		case 4:
+
+			break;
+		case 5:
+
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	}
 }
 
 bool TuringMachine::divide() {
