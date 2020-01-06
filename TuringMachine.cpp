@@ -57,8 +57,9 @@ void TuringMachine::Setup(int dec_1, int dec_2, Operation op) {
 	_op = op;
 	
 	NumberConverter convert;
+	int actual_tape[19];
 	int* tape;
-	tape = convert.give_tape(_tape, dec_1, dec_2, op);
+	tape = convert.give_tape(actual_tape, dec_1, dec_2, op);
 
 	switch (_op) {
 	case Operation::ADD:
