@@ -519,7 +519,10 @@ bool TuringMachine::subtract() {
 }
 
 bool TuringMachine::multiply() {
-
+	state();
+	read();
+	std::cout << "\nPrzeczytano symbol.";
+	state();
 
 	switch (_state) {
 	case 0:
@@ -1351,6 +1354,7 @@ bool TuringMachine::multiply() {
 		return true;
 		break;
 	}
+	return false;
 }
 
 bool TuringMachine::divide() {
