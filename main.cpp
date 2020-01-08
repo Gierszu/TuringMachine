@@ -6,27 +6,37 @@ NumberConverter convert;
 TuringMachine machine;
 
 bool is_complete = 0;
+bool is_working = 0;
 
 int main() {
-	graphic.FIRST_VALUE = 5;
-	machine.Setup(graphic.FIRST_VALUE, graphic.OPERATION);
+	
 
 	while (graphic.window.isOpen())
-	{
-
-		graphic.drawAll();
-		graphic.sync(machine.get_tape(), machine.get_pos(), machine.get_state()); //(pointer to tape's array, position(0-18),pointer's value)
-		if (graphic.SEND && is_complete == 0)
+	{	
+		if (graphic.SEND && is_working == 0)
 		{
-			machine.Setup(graphic.FIRST_VALUE, graphic.OPERATION);
+			if(graphic.SECOND_VALUE == 0) machine.Setup(graphic.FIRST_VALUE, graphic.OPERATION);
+			else machine.Setup(graphic.FIRST_VALUE, graphic.SECOND_VALUE, graphic.OPERATION);
 			graphic.SEND = 0;
+			is_working = 1;
 		}
-		if (is_complete == 0)
+		graphic.sync(machine.get_tape(), machine.get_pos(), machine.get_state()); //(pointer to tape's array, position(0-18),pointer's value)
+		graphic.drawAll();
+		if (is_working)
 		{
 			is_complete = machine.Step();
+			Sleep(1000);
+			if (is_complete)
+			{
+				is_working = 0;
+				graphic.resultText.setString(std::to_string(machine.result()));
+			}
 		}
-
-		graphic.controls();
+		
+		if (is_working == 0)
+		{
+			graphic.controls();
+		}
 	}
 	return 0;
 

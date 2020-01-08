@@ -68,10 +68,10 @@ CGraphics::CGraphics()
 {
 	
 	font.loadFromFile("Include/Fonts/Font1.ttf");
-	window.create(sf::VideoMode(990, 540), "Turing Machine");
+	window.create(sf::VideoMode(2081, 540), "Turing Machine");
 	texture.loadFromFile("Include/Sprites/Sprites.png");
 	//tape create
-	for (int i = 0; i < 19; i++)
+	for (int i = 0; i < 40; i++)
 	{
 		squares.push_back(CSquare(&texture, 52 * i, 200));
 		squares[i].value.setFont(font);
@@ -131,6 +131,15 @@ CGraphics::CGraphics()
 	textBox.setTextureRect(sf::IntRect(0, 131, 300, 44));
 	textBox.setPosition(588, 405);
 	this->SEND = 0;
+	textBox2.setTexture(texture);
+	textBox2.setTextureRect(sf::IntRect(0, 131, 300, 44));
+	textBox2.setPosition(588, 455);
+	resultText.setFont(font);
+	resultText.setCharacterSize(40);
+	resultText.setFillColor(sf::Color::White);
+	resultText.setPosition(620, 450);
+	resultText.setString("Result");
+	
 	
 }
 
@@ -183,12 +192,14 @@ void CGraphics::drawAll()
 	window.draw(operationText1);
 	window.draw(operationText2);
 	window.draw(signText);
+	window.draw(textBox2);
+	window.draw(resultText);
 
 	window.display();
 }
 void CGraphics::sync(int* tape, int position, int value)
 {
-	for (int i = 0; i < 19; i++)
+	for (int i = 0; i < 40; i++)
 	{
 		switch (tape[i])
 		{
@@ -198,8 +209,33 @@ void CGraphics::sync(int* tape, int position, int value)
 		case 1:
 			squares[i].value.setString("1");
 			break;
-		case 999:
+		case EMPTY:
 			squares[i].value.setString(" ");
+			break;
+
+		case 2:
+			squares[i].value.setString("2");
+			break;
+		case 3:
+			squares[i].value.setString("3");
+			break;
+		case 4:
+			squares[i].value.setString("4");
+			break;
+		case 5:
+			squares[i].value.setString("5");
+			break;
+		case 6:
+			squares[i].value.setString("6");
+			break;
+		case 7:
+			squares[i].value.setString("7");
+			break;
+		case 8:
+			squares[i].value.setString("8");
+			break;
+		case 9:
+			squares[i].value.setString("9");
 			break;
 		}
 	}

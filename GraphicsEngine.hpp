@@ -70,6 +70,8 @@ public:
 	sf::Text operationText2;// for text box
 	sf::Text signText;//
 	sf::Sprite textBox;//
+	sf::Sprite textBox2;// Result
+	sf::Text resultText;// for text box
 	CGraphics();
 	void drawAll();
 	void sync(int*,int, int); //sync graphics with machine code

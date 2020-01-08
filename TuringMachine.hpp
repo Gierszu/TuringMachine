@@ -11,7 +11,7 @@ public:
 	~TuringMachine() {};
 
 	// Inicjalizacja maszyny, nie przez konstruktor, ¿eby mo¿na by³o u¿ywaæ jednej maszyny wiele razy:
-	void Init(int tape[19], Direction dir);
+	void Init(int tape[40], Direction dir);
 
 	// Funkcja odbieraj¹ca zmienne od u¿ytkownika i przygotowuj¹ca dzia³anie maszyny.
 	void Setup(int dec_1, int dec_2, Operation op);
@@ -36,7 +36,7 @@ private:
 	void _step(int new_symbol, int new_state, Direction dir);
 
 	// Dane maszyny:
-	int _tape[19];
+	int _tape[40];
 	int _pos;
 	int _state;
 	int _symbol;
