@@ -75,7 +75,7 @@ void TuringMachine::Setup(int dec_1, int dec_2, Operation op) {
 		Init(tape, Direction::LEFT);
 		break;
 	default:
-		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o siê ustawiæ maszyny.\n\n";
+		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o sie ustawic maszyny.\n\n";
 		return;
 		break;
 	}

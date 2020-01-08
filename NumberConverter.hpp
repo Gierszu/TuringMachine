@@ -14,7 +14,7 @@ public:
 	long long b2d(long long bin);
 	long long b2d(std::vector<int> bin);
 	
-	std::vector<int> vd2b(long long dec); 
+	std::vector<int> vd2b(int dec); 
 
 	int* give_tape(int tape[40], int dec_1, int dec_2, Operation op);
 	int* give_tape(int tape[40], int dec);
