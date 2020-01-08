@@ -15,8 +15,7 @@ int main() {
 	{	
 		if (graphic.SEND && is_working == 0)
 		{
-			if(graphic.SECOND_VALUE == 0) machine.Setup(graphic.FIRST_VALUE, graphic.OPERATION);
-			else machine.Setup(graphic.FIRST_VALUE, graphic.SECOND_VALUE, graphic.OPERATION);
+			machine.Setup(graphic.FIRST_VALUE, graphic.SECOND_VALUE, graphic.OPERATION);
 			graphic.SEND = 0;
 			is_working = 1;
 		}
