@@ -471,6 +471,17 @@ void CGraphics::controls()
 		if (pointer_x == 2 && pointer_y == 3)//= ///////////////////////////////////////////////
 		{
 			std::cout << "="; //DO CRAZY MACHINE THING
+			if (OPERATION == Operation::SUB && SECOND_VALUE > FIRST_VALUE)
+			{
+				resultText.setString("2nd value needs to \nbe lower than 1st");
+				resultText.setCharacterSize(20);
+			}
+			else if (OPERATION == Operation::DIV && SECOND_VALUE == 0)
+			{
+				resultText.setString("Cannot divide by 0");
+				resultText.setCharacterSize(20);
+			}
+			else
 			SEND = 1;
 		}
 		if (pointer_x == 3 && pointer_y == 0)//+

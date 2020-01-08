@@ -511,8 +511,88 @@ bool TuringMachine::add() {
 }
 
 bool TuringMachine::subtract() {
-	std::cout << "\n\nERROR - Dzia³anie nie posiada gotowego algorytmu. Koñczenie pracy.";
-	return true;
+	state();
+	read();
+	std::cout << "\nPrzeczytano symbol.";
+	state();
+
+	switch (_state / 10)
+	{
+	case 0:
+		switch (_state % 10)
+		{
+		case 0:
+			if (_symbol == 1)
+			{
+				_step(0, 11, Direction::LEFT);
+			}
+			else
+			{
+				_step(_symbol, 2, Direction::LEFT);
+			}
+			break;
+
+		default:
+			if (_symbol == 1) _step(0, _state + 10, Direction::LEFT);
+			else if (_symbol == EMPTY) _step(_symbol, 70, Direction::LEFT);
+			else _step(_symbol, _state + 1, Direction::LEFT);
+			break;
+		}
+		break;
+	case 1:
+		if (_symbol == EMPTY) _step(_symbol, _state + 9, Direction::LEFT);
+		else _step(_symbol, _state, Direction::LEFT);
+		break;
+	case 2:
+		if (_state % 10 == 0)
+		{
+			if (_symbol == 1) _step(0, 30, Direction::RIGHT);
+			else _step(_symbol, 51, Direction::LEFT);
+		}
+		else _step(_symbol, _state - 1, Direction::LEFT);
+		break;
+	case 3:
+		if (_symbol == EMPTY) _step(_symbol, 40, Direction::RIGHT);
+		else _step(_symbol, _state, Direction::RIGHT);
+		break;
+	case 4:
+		if (_symbol == EMPTY) _step(_symbol, 1, Direction::LEFT);
+		else _step(_symbol, _state, Direction::RIGHT);
+		break;
+	case 5:
+		if (_symbol == 1)_step(0, _state + 9, Direction::RIGHT);
+		else _step(_symbol, _state + 1, Direction::LEFT);
+		break;
+	case 6:
+		if (_state % 10 == 0)_step(1, 30, Direction::RIGHT);
+		else _step(1, _state - 1, Direction::RIGHT);
+		break;
+	case 7:
+		if (_symbol == EMPTY) _step(_symbol, 80, Direction::RIGHT);
+		else _step(_symbol, _state, Direction::LEFT);
+		break;
+	case 8:
+		if (_symbol == 0) _step(EMPTY, _state, Direction::RIGHT);
+		else if (_symbol == EMPTY)_step(_symbol, 120, Direction::LEFT);
+		else _step(_symbol, 90, Direction::RIGHT);
+		break;
+	case 9:
+		if (_symbol == EMPTY) _step(_symbol, 100, Direction::RIGHT);
+		else _step(_symbol, _state, Direction::RIGHT);
+		break;
+	case 10:
+		if (_symbol == EMPTY) _step(_symbol, 110, Direction::LEFT);
+		else _step(EMPTY, _state, Direction::RIGHT);
+		break;
+	case 11:
+		if (_symbol != EMPTY) return true;
+		else _step(_symbol, _state, Direction::LEFT);
+		break;
+	case 12:
+		_step(0, 90, Direction::RIGHT);
+		break;
+	}
+	return false;
 }
 
 bool TuringMachine::multiply() {

@@ -25,11 +25,12 @@ int main() {
 		if (is_working)
 		{
 			is_complete = machine.Step();
-			Sleep(1000);
+			Sleep(50);
 			if (is_complete)
 			{
 				is_working = 0;
 				graphic.resultText.setString(std::to_string(machine.result()));
+				graphic.resultText.setCharacterSize(40);
 			}
 		}
 		
