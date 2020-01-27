@@ -468,9 +468,9 @@ void CGraphics::controls()
 				operationText2.setString(std::to_string(SECOND_VALUE));
 			}
 		}
-		if (pointer_x == 2 && pointer_y == 3)//= ///////////////////////////////////////////////
+		if (pointer_x == 2 && pointer_y == 3)//= ///////////////////////////////////////////////STARTING OPERATION
 		{
-			std::cout << "="; //DO CRAZY MACHINE THING
+			std::cout << "=";  
 			if (OPERATION == Operation::SUB && SECOND_VALUE > FIRST_VALUE)
 			{
 				resultText.setString("2nd value needs to \nbe lower than 1st");
@@ -505,7 +505,7 @@ void CGraphics::controls()
 			OPERATION = Operation::MUL;
 			signText.setString("*");
 		}
-		if (pointer_x == 3 && pointer_y == 3)//'/'
+		if (pointer_x == 3 && pointer_y == 3)// '/'
 		{
 			if (writing == 0)entryCounter = 0;
 			writing = 1;

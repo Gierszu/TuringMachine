@@ -5,7 +5,7 @@
 #include <math.h>
 
 #include "DEFINITIONS.h"
-
+//Decimal to Binary & Binary to Decimal converter
 class NumberConverter {
 public:
 	double power(int nr, int exp);

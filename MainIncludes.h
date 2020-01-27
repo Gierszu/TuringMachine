@@ -1,7 +1,7 @@
 #pragma once
 
 
-//  Plik, do którego nale¿y wrzucaæ wszystkie #include do main.cpp, ¿eby go nie zaœmieciæ.
+//File holding most of the #include's
 
 #include "GraphicsEngine.hpp"
 
