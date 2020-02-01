@@ -23,8 +23,7 @@ int main() {
 		graphic.drawAll(); //displays graphics
 		if (is_working)
 		{
-			is_complete = machine.Step(); //does 1 step, is equal 1 when machine's operation is complete, 0 otherwise
-			Sleep(50); //makes visualisation look better
+
 			if (is_complete)
 			{
 				is_working = 0;
