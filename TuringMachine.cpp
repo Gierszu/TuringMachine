@@ -1437,7 +1437,6 @@ bool TuringMachine::multiply() {
 	return false;
 }
 
-
 bool TuringMachine::divide() {
 	read();
 	std::cout << "\nPrzeczytano symbol.";
@@ -1635,7 +1634,7 @@ bool TuringMachine::divide() {
 	case 91:
 		switch (_symbol) {
 		case EMPTY:
-			_step(EMPTY, 92, Direction::LEFT);
+			_step(EMPTY, 100, Direction::LEFT);
 			break;
 		case 0:
 		case 1:
@@ -1910,6 +1909,72 @@ bool TuringMachine::divide() {
 			break;
 		}
 		break;
+	case 990:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 993, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			_step(_symbol, _state, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 993:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 991, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			_step(EMPTY, _state, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 991:
+		switch (_symbol) {
+		case EMPTY:
+		case 8:
+			_step(EMPTY, 992, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			_step(EMPTY, _state, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 992:
+		switch (_symbol) {
+		case 8:
+			_step(EMPTY, 992, Direction::LEFT);
+			break;
+		case 0:
+		case EMPTY:
+			_step(1, 9999, Direction::STOP);
+			break;
+		case 1:
+			_step(0, 992, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
 	case 100:
 	case 110:
 	case 120:
@@ -1994,7 +2059,7 @@ bool TuringMachine::divide() {
 	case 301:
 		switch (_symbol) {
 		case EMPTY:
-			_step(_symbol, 951, Direction::LEFT);
+			_step(_symbol, 990, Direction::RIGHT);
 			break;
 		case 0:
 			_step(2, 302, Direction::RIGHT);
@@ -2030,7 +2095,7 @@ bool TuringMachine::divide() {
 	case 303:
 		switch (_symbol) {
 		case 0:
-			_step(2, 304, Direction::RIGHT);
+			_step(2, 304, Direction::LEFT);
 			break;
 		case 1:
 			_step(_symbol, 950, Direction::LEFT);
