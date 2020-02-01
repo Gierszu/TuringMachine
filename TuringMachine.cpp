@@ -1,11 +1,11 @@
 #include "TuringMachine.hpp"
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////												Dzia³anie												////
+////												DziaÂ³anie												////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/// Inicjalizuje, b¹dŸ resetuje maszynê.
+/// Inicjalizuje, bÂ¹dÅ¸ resetuje maszynÃª.
 void TuringMachine::Init(int tape[40], Direction dir) {
 	std::cout << "\n\nMasszyna Turinga utworzona. Inicjalizowanie zmiennych...";
 
@@ -17,7 +17,7 @@ void TuringMachine::Init(int tape[40], Direction dir) {
 
 	std::cout << "\nZmienne zainicjalizowane. Czyszczenie tasmy...";
 
-	// Czyszczenie taœmy:
+	// Czyszczenie taÅ“my:
 	for (int i = 0; i < 40; i++) {
 		_tape[i] = EMPTY;
 	}
@@ -26,7 +26,7 @@ void TuringMachine::Init(int tape[40], Direction dir) {
 
 	std::cout << "\nTasma wyczyszczona. Przygotowywanie tasmy pod obliczenia...";
 
-	// Przypisywanie nowej taœmy, zostawiaj¹c szesnascie pol pustych z przodu:
+	// Przypisywanie nowej taÅ“my, zostawiajÂ¹c szesnascie pol pustych z przodu:
 	for (int i = 20; i < 40; i++) {
 		_tape[i] = tape[i - 20];
 	}
@@ -35,7 +35,7 @@ void TuringMachine::Init(int tape[40], Direction dir) {
 
 	std::cout << "\nTasma przygotowana. Ustawianie poczatkowej pozycji...";
 
-	// Ustawianie pocz¹tkowej pozycji:
+	// Ustawianie poczÂ¹tkowej pozycji:
 	if (_dir == Direction::LEFT) {
 		for (int i = 39; i > 0; i--) {
 			if (_tape[i] != EMPTY && _pos == 0) {
@@ -52,7 +52,7 @@ void TuringMachine::Init(int tape[40], Direction dir) {
 	std::cout << "\nPoczatkowa pozycja ustalona : " << _pos << "\nMaszyna zainicjalizowana.\n";
 }
 
-/// Zbiera dane od u¿ytkownika i na ich podstawie przygotowuje maszynê do pracy.
+/// Zbiera dane od uÂ¿ytkownika i na ich podstawie przygotowuje maszynÃª do pracy.
 void TuringMachine::Setup(int dec_1, int dec_2, Operation op) {
 	_op = op;
 
@@ -72,10 +72,10 @@ void TuringMachine::Setup(int dec_1, int dec_2, Operation op) {
 		Init(tape, Direction::LEFT);
 		break;
 	case Operation::DIV:
-		Init(tape, Direction::LEFT);
+		Init(tape, Direction::RIGHT);
 		break;
 	default:
-		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o sie ustawic maszyny.\n\n";
+		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie udaÂ³o sie ustawic maszyny.\n\n";
 		return;
 		break;
 	}
@@ -94,7 +94,7 @@ void TuringMachine::Setup(int dec, Operation op) {
 		Init(tape, Direction::LEFT);
 		break;
 	default:
-		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o siê ustawiæ maszyny.\n\n";
+		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie udaÂ³o siÃª ustawiÃ¦ maszyny.\n\n";
 		return;
 		break;
 	}
@@ -118,12 +118,12 @@ bool TuringMachine::Step() {
 		return increment();
 		break;
 	default:
-		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o siê wykonaæ kroku.\n\n";
+		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie udaÂ³o siÃª wykonaÃ¦ kroku.\n\n";
 		return true;
 		break;
 	}
 
-	std::cout << "ERROR - Wyszed³em poza switcha w Step()!";
+	std::cout << "ERROR - WyszedÂ³em poza switcha w Step()!";
 	return true;
 }
 
@@ -132,7 +132,7 @@ void TuringMachine::read() {
 	_symbol = _tape[_pos];
 }
 
-/// Wykonuje jeden krok dzia³ania.
+/// Wykonuje jeden krok dziaÂ³ania.
 void TuringMachine::_step(int new_symbol, int new_state, Direction dir) {
 	_tape[_pos] = new_symbol;
 	_state = new_state;
@@ -149,7 +149,7 @@ void TuringMachine::_step(int new_symbol, int new_state, Direction dir) {
 	}
 }
 
-/// Zwraca wynik w postaci decymalnej. Do u¿ycia po wykonaniu ca³ego dzia³ania.
+/// Zwraca wynik w postaci decymalnej. Do uÂ¿ycia po wykonaniu caÂ³ego dziaÂ³ania.
 int TuringMachine::result() {
 	NumberConverter convert;
 	std::vector<int> vec;
@@ -163,12 +163,12 @@ int TuringMachine::result() {
 	return convert.b2d(vec);
 }
 
-/// Zwraca pointer do taœmy.
+/// Zwraca pointer do taÅ“my.
 int* TuringMachine::get_tape() {
 	return _tape;
 }
 
-/// Zwraca pozycjê g³owicy.
+/// Zwraca pozycjÃª gÂ³owicy.
 int TuringMachine::get_pos() {
 	return _pos;
 }
@@ -178,12 +178,12 @@ int TuringMachine::get_state() {
 	return _state;
 }
 
-/// Zwraca symbol do wyœwietlenia na g³owicy.
+/// Zwraca symbol do wyÅ“wietlenia na gÂ³owicy.
 int TuringMachine::get_symbol() {
 	return _symbol;
 }
 
-/// Wyœwietla zawartoœæ taœmy.
+/// WyÅ“wietla zawartoÅ“Ã¦ taÅ“my.
 void TuringMachine::print() {
 	std::cout << "\n|";
 	for (int i = 0; i < 40; i++) {
@@ -192,7 +192,7 @@ void TuringMachine::print() {
 	std::cout << "\n";
 }
 
-/// Wyœwietla status maszyny.
+/// WyÅ“wietla status maszyny.
 void TuringMachine::state() {
 	std::cout << "\n\nStan : " << _state << "\nSymbol : " << _symbol << "\nPozycja : " << _pos;
 	print();
@@ -202,7 +202,7 @@ void TuringMachine::state() {
 ////												Algorytmy												////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/// Wykonuje binarn¹ inkrementacjê o 1. Zwraca TRUE przy zakoñczonej pracy.
+/// Wykonuje binarnÂ¹ inkrementacjÃª o 1. Zwraca TRUE przy zakoÃ±czonej pracy.
 bool TuringMachine::increment() {
 	state();
 	read();
@@ -1439,6 +1439,9 @@ bool TuringMachine::multiply() {
 
 
 bool TuringMachine::divide() {
+
+	state();
+
 	read();
 	std::cout << "\nPrzeczytano symbol.";
 	state();
@@ -1447,6 +1450,7 @@ bool TuringMachine::divide() {
 	case 0:
 		switch (_symbol) {
 		case EMPTY:
+
 			_step(EMPTY, 0, Direction::LEFT);
 			break;
 		case 0:
@@ -1457,10 +1461,43 @@ bool TuringMachine::divide() {
 			break;
 		default:
 			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+
+			_step(EMPTY, 1, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 0, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 0, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 0, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 0, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 0, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 0, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 0, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 0, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+
 			break;
 		}
 		break;
 	case 1:
+
 	case 2:
 	case 3:
 	case 4:
@@ -2144,6 +2181,1250 @@ bool TuringMachine::divide() {
 		std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
 		break;
 	}
+
+
+		switch (_symbol) {
+		case 0:
+			_step(4, 6, Direction::RIGHT);
+			break;
+		case 1:
+			_step(3, 2, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 8, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 2:
+		switch (_symbol) {
+		case EMPTY:
+			_step(9, 3, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 2, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 2, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 2, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 2, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 2, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 2, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 2, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 3, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 3:
+		switch (_symbol) {
+		case EMPTY:
+			_step(1, 4, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 3, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 3, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 3, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 3, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 3, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 3, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 3, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 3, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 4:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 4, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 4, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 4, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 4, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 4, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 4, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 4, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 4, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 5, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 5:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 5, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 5, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 5, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 5, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 1, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 1, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 5, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 5, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 5, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 6:
+		switch (_symbol) {
+		case EMPTY:
+			_step(9, 7, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 6, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 6, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 6, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 6, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 6, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 6, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 6, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 7, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 7:
+		switch (_symbol) {
+		case EMPTY:
+			_step(0, 4, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 7, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 7, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 7, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 7, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 7, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 7, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 7, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 7, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 8:
+		switch (_symbol) {
+		case 3:
+			_step(1, 9, Direction::LEFT);
+			break;
+		case 4:
+			_step(0, 8, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 9:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 10, Direction::LEFT);
+			break;
+		case 3:
+			_step(0, 9, Direction::LEFT);
+			break;
+		case 4:
+			_step(1, 9, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 10:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 11, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 10, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 10, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 10, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 10, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 10, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 10, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 10, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 10, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 11:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 12, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 11, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 11, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 11, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 11, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 11, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 11, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 11, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 11, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 12:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 12, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 12, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 12, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 12, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 12, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 12, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 12, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 12, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 13, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 13:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 19, Direction::RIGHT);
+			break;
+		case 0:
+			_step(3, 14, Direction::LEFT);
+			break;
+		case 1:
+			_step(4, 15, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 13, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 13, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 14:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 36, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 14, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 14, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 14, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 14, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 14, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 14, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 14, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 14, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 15:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 16, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 15, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 15, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 15, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 15, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 15, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 15, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 15, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 15, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 16:
+		switch (_symbol) {
+		case EMPTY:
+			_step(1, 17, Direction::STOP);
+			break;
+		case 0:
+			_step(1, 17, Direction::STOP);
+			break;
+		case 1:
+			_step(0, 16, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 16, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 16, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 16, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 16, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 16, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 16, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 17:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 18, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 17, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 17, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 17, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 17, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 17, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 18, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 18, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 17, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 18:
+		switch (_symbol) {
+		case 0:
+			_step(5, 11, Direction::RIGHT);
+			break;
+		case 1:
+			_step(6, 11, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 19:
+		switch (_symbol) {
+		case 3:
+			_step(0, 19, Direction::RIGHT);
+			break;
+		case 4:
+			_step(1, 19, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 37, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 20:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 39, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 20, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 20, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 20, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 20, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 20, Direction::LEFT);
+			break;
+		case 5:
+			_step(0, 20, Direction::LEFT);
+			break;
+		case 6:
+			_step(1, 20, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 20, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 22:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 35, Direction::RIGHT);
+			break;
+		case 0:
+			_step(5, 27, Direction::RIGHT);
+			break;
+		case 1:
+			_step(6, 23, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 23:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 23, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 23, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 23, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 23, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 23, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 23, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 23, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 23, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 24, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 24:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 29, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 29, Direction::LEFT);
+			break;
+		case 1:
+			_step(6, 25, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 24, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 24, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 24, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 24, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 24, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 24, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 25:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 26, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 25, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 25, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 25, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 25, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 25, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 25, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 25, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 25, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 26:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 26, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 26, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 26, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 26, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 26, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 26, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 22, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 22, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 26, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 27:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 27, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 27, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 27, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 27, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 27, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 27, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 27, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 27, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 28, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 28:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 29, Direction::LEFT);
+			break;
+		case 0:
+			_step(5, 25, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 32, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 28, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 28, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 28, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 28, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 28, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 28, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 29:
+		switch (_symbol) {
+		case 5:
+			_step(0, 29, Direction::LEFT);
+			break;
+		case 6:
+			_step(1, 29, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 30, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 30:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 31, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 30, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 30, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 30, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 30, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 30, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 30, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 30, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 30, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 31:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 11, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 31, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 31, Direction::LEFT);
+			break;
+		case 5:
+			_step(0, 31, Direction::LEFT);
+			break;
+		case 6:
+			_step(1, 31, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 32:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 33, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 32, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 32, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 32, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 32, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 32, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 32, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 32, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 32, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 33:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 34, Direction::LEFT);
+			break;
+		case 0:
+			_step(EMPTY, 33, Direction::LEFT);
+			break;
+		case 1:
+			_step(EMPTY, 33, Direction::LEFT);
+			break;
+		case 2:
+			_step(EMPTY, 33, Direction::LEFT);
+			break;
+		case 3:
+			_step(EMPTY, 33, Direction::LEFT);
+			break;
+		case 4:
+			_step(EMPTY, 33, Direction::LEFT);
+			break;
+		case 5:
+			_step(EMPTY, 33, Direction::LEFT);
+			break;
+		case 6:
+			_step(EMPTY, 33, Direction::LEFT);
+			break;
+		case 9:
+			_step(EMPTY, 33, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 34:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 99, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 34, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 34, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 34, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 34, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 34, Direction::LEFT);
+			break;
+		case 5:
+			_step(0, 34, Direction::LEFT);
+			break;
+		case 6:
+			_step(1, 34, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 34, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 35:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 29, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 35, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 35, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 35, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 35, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 35, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 35, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 35, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 35, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 36:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 11, Direction::RIGHT);
+			break;
+		case 0:
+			_step(5, 11, Direction::RIGHT);
+			break;
+		case 1:
+			_step(6, 11, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 36, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 36, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 36, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 36, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 36, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 36, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 37:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 20, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 37, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 37, Direction::LEFT);
+			break;
+		case 2:
+			_step(2, 37, Direction::LEFT);
+			break;
+		case 3:
+			_step(3, 37, Direction::LEFT);
+			break;
+		case 4:
+			_step(4, 37, Direction::LEFT);
+			break;
+		case 5:
+			_step(5, 37, Direction::LEFT);
+			break;
+		case 6:
+			_step(6, 37, Direction::LEFT);
+			break;
+		case 9:
+			_step(9, 37, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 39:
+		switch (_symbol) {
+		case EMPTY:
+			_step(1, 40, Direction::RIGHT);
+			break;
+		case 0:
+			_step(1, 40, Direction::RIGHT);
+			break;
+		case 1:
+			_step(0, 39, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 40:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 41, Direction::RIGHT);
+			break;
+		case 0:
+			_step(0, 40, Direction::RIGHT);
+			break;
+		case 1:
+			_step(1, 40, Direction::RIGHT);
+			break;
+		case 2:
+			_step(2, 40, Direction::RIGHT);
+			break;
+		case 3:
+			_step(3, 40, Direction::RIGHT);
+			break;
+		case 4:
+			_step(4, 40, Direction::RIGHT);
+			break;
+		case 5:
+			_step(5, 40, Direction::RIGHT);
+			break;
+		case 6:
+			_step(6, 40, Direction::RIGHT);
+			break;
+		case 9:
+			_step(9, 40, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 41:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 41, Direction::RIGHT);
+			break;
+		case 0:
+			_step(EMPTY, 22, Direction::RIGHT);
+			break;
+		case 1:
+			_step(EMPTY, 22, Direction::RIGHT);
+			break;
+		case 2:
+			_step(EMPTY, 22, Direction::RIGHT);
+			break;
+		case 3:
+			_step(EMPTY, 22, Direction::RIGHT);
+			break;
+		case 4:
+			_step(EMPTY, 22, Direction::RIGHT);
+			break;
+		case 5:
+			_step(EMPTY, 22, Direction::RIGHT);
+			break;
+		case 6:
+			_step(EMPTY, 22, Direction::RIGHT);
+			break;
+		case 9:
+			_step(EMPTY, 22, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nERROR - Nierozpoznany symbol." << _symbol << "Konczenie programu.";
+			state();
+			return true;
+			break;
+		}
+		break;
+	case 99:
+		std::cout << "Dzielenie zakonczone. Koncze dzialanie programu";
+		return 1;
+
+		break;
+	default:
+		std::cout << "ERROR - Nierozpoznany stan.";
+		return true;
+		break;
+	}
+	std::cout << "\nWykonano krok. Stan tasmy : ";
+
+	state();
 
 	return false;
 }
