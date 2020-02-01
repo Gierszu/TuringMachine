@@ -232,7 +232,7 @@ void CGraphics::sync(int* tape, int position, int value)
 			squares[i].value.setString("7");
 			break;
 		case 8:
-			squares[i].value.setString("8");
+			squares[i].value.setString(" ");
 			break;
 		case 9:
 			squares[i].value.setString("9");
