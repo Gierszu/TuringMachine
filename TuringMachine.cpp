@@ -8,7 +8,7 @@
 /// Inicjalizuje, b¹dŸ resetuje maszynê.
 void TuringMachine::Init(int tape[40], Direction dir) {
 	std::cout << "\n\nMasszyna Turinga utworzona. Inicjalizowanie zmiennych...";
-	
+
 	// Inicjalizowanie zmiennych:
 	_pos = 0;
 	_state = 0;
@@ -28,7 +28,7 @@ void TuringMachine::Init(int tape[40], Direction dir) {
 
 	// Przypisywanie nowej taœmy, zostawiaj¹c szesnascie pol pustych z przodu:
 	for (int i = 20; i < 40; i++) {
-		_tape[i] = tape[i-20];
+		_tape[i] = tape[i - 20];
 	}
 
 	state();
@@ -55,7 +55,7 @@ void TuringMachine::Init(int tape[40], Direction dir) {
 /// Zbiera dane od u¿ytkownika i na ich podstawie przygotowuje maszynê do pracy.
 void TuringMachine::Setup(int dec_1, int dec_2, Operation op) {
 	_op = op;
-	
+
 	NumberConverter convert;
 	int actual_tape[40];
 	int* tape;
@@ -75,7 +75,7 @@ void TuringMachine::Setup(int dec_1, int dec_2, Operation op) {
 		Init(tape, Direction::LEFT);
 		break;
 	default:
-		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o siê ustawiæ maszyny.\n\n";
+		std::cout << "\n\nERROR - Nie rozpoznano operacji! Nie uda³o sie ustawic maszyny.\n\n";
 		return;
 		break;
 	}
@@ -137,12 +137,15 @@ void TuringMachine::_step(int new_symbol, int new_state, Direction dir) {
 	_tape[_pos] = new_symbol;
 	_state = new_state;
 	_dir = dir;
-	
+
 	if (_dir == Direction::LEFT && _pos > 0) {
 		_pos -= 1;
 	}
 	else if (_dir == Direction::RIGHT && _pos < 39) {
 		_pos += 1;
+	}
+	else {
+
 	}
 }
 
@@ -511,8 +514,88 @@ bool TuringMachine::add() {
 }
 
 bool TuringMachine::subtract() {
-	std::cout << "\n\nERROR - Dzia³anie nie posiada gotowego algorytmu. Koñczenie pracy.";
-	return true;
+	state();
+	read();
+	std::cout << "\nPrzeczytano symbol.";
+	state();
+
+	switch (_state / 10)
+	{
+	case 0:
+		switch (_state % 10)
+		{
+		case 0:
+			if (_symbol == 1)
+			{
+				_step(0, 11, Direction::LEFT);
+			}
+			else
+			{
+				_step(_symbol, 2, Direction::LEFT);
+			}
+			break;
+
+		default:
+			if (_symbol == 1) _step(0, _state + 10, Direction::LEFT);
+			else if (_symbol == EMPTY) _step(_symbol, 70, Direction::LEFT);
+			else _step(_symbol, _state + 1, Direction::LEFT);
+			break;
+		}
+		break;
+	case 1:
+		if (_symbol == EMPTY) _step(_symbol, _state + 9, Direction::LEFT);
+		else _step(_symbol, _state, Direction::LEFT);
+		break;
+	case 2:
+		if (_state % 10 == 0)
+		{
+			if (_symbol == 1) _step(0, 30, Direction::RIGHT);
+			else _step(_symbol, 51, Direction::LEFT);
+		}
+		else _step(_symbol, _state - 1, Direction::LEFT);
+		break;
+	case 3:
+		if (_symbol == EMPTY) _step(_symbol, 40, Direction::RIGHT);
+		else _step(_symbol, _state, Direction::RIGHT);
+		break;
+	case 4:
+		if (_symbol == EMPTY) _step(_symbol, 1, Direction::LEFT);
+		else _step(_symbol, _state, Direction::RIGHT);
+		break;
+	case 5:
+		if (_symbol == 1)_step(0, _state + 9, Direction::RIGHT);
+		else _step(_symbol, _state + 1, Direction::LEFT);
+		break;
+	case 6:
+		if (_state % 10 == 0)_step(1, 30, Direction::RIGHT);
+		else _step(1, _state - 1, Direction::RIGHT);
+		break;
+	case 7:
+		if (_symbol == EMPTY) _step(_symbol, 80, Direction::RIGHT);
+		else _step(_symbol, _state, Direction::LEFT);
+		break;
+	case 8:
+		if (_symbol == 0) _step(EMPTY, _state, Direction::RIGHT);
+		else if (_symbol == EMPTY)_step(_symbol, 120, Direction::LEFT);
+		else _step(_symbol, 90, Direction::RIGHT);
+		break;
+	case 9:
+		if (_symbol == EMPTY) _step(_symbol, 100, Direction::RIGHT);
+		else _step(_symbol, _state, Direction::RIGHT);
+		break;
+	case 10:
+		if (_symbol == EMPTY) _step(_symbol, 110, Direction::LEFT);
+		else _step(EMPTY, _state, Direction::RIGHT);
+		break;
+	case 11:
+		if (_symbol != EMPTY) return true;
+		else _step(_symbol, _state, Direction::LEFT);
+		break;
+	case 12:
+		_step(0, 90, Direction::RIGHT);
+		break;
+	}
+	return false;
 }
 
 bool TuringMachine::multiply() {
@@ -1342,7 +1425,7 @@ bool TuringMachine::multiply() {
 		}
 		break;
 	case 99:
-		std::cout << "\n\nDodawanie wykonane pomyslnie. Konczenie programu.";
+		std::cout << "\n\nMnozenie wykonano pomyslnie. Konczenie programu.";
 		return true;
 		break;
 	default:
@@ -1354,7 +1437,713 @@ bool TuringMachine::multiply() {
 	return false;
 }
 
+
 bool TuringMachine::divide() {
-	std::cout << "\n\nERROR - Dzia³anie nie posiada gotowego algorytmu. Koñczenie pracy.";
-	return true;
+	read();
+	std::cout << "\nPrzeczytano symbol.";
+	state();
+
+	switch (_state) {
+	case 0:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 0, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, 1, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, 1, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 1:
+	case 2:
+	case 3:
+	case 4:
+	case 5:
+	case 6:
+	case 7:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, _state * 10, Direction::LEFT);
+			break;
+		case 0:
+			_step(0, _state + 1, Direction::LEFT);
+			break;
+		case 1:
+			_step(1, _state + 1, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 8:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, _state * 10, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 10:
+	case 20:
+	case 30:
+	case 40:
+	case 50:
+	case 60:
+	case 70:
+	case 80:
+		switch (_symbol) {
+		case 0:
+		case 1:
+			_step(_symbol, _state + 1, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 12:
+	case 13:
+	case 14:
+	case 15:
+	case 16:
+	case 17:
+	case 18:
+	case 23:
+	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 28:
+	case 34:
+	case 35:
+	case 36:
+	case 37:
+	case 38:
+	case 45:
+	case 46:
+	case 47:
+	case 48:
+	case 56:
+	case 57:
+	case 58:
+	case 67:
+	case 68:
+	case 78:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 90, Direction::RIGHT);
+			break;
+		case 8:
+			_step(8, 90, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, _state + 1, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 11:
+	case 22:
+	case 33:
+	case 44:
+	case 55:
+	case 66:
+	case 77:
+	case 88:
+		switch (_symbol) {
+		case EMPTY:
+		case 8:
+			_step(_symbol, 301, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, _state + 1, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 21:
+	case 31:
+	case 32:
+	case 41:
+	case 42:
+	case 43:
+	case 51:
+	case 52:
+	case 53:
+	case 54:
+	case 61:
+	case 62:
+	case 63:
+	case 64:
+	case 65:
+	case 71:
+	case 72:
+	case 73:
+	case 74:
+	case 75:
+	case 76:
+	case 81:
+	case 82:
+	case 83:
+	case 84:
+	case 85:
+	case 86:
+	case 87:
+		switch (_symbol) {
+		case EMPTY:
+		case 8:
+			return true;
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, _state + 1, Direction::LEFT);
+			break;
+		}
+		break;
+	case 90:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 91, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+		case 8:
+			_step(_symbol, 90, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 91:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 92, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			_step(_symbol, 91, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 92:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 100, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			_step(_symbol, 90, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 93:
+		switch (_symbol) {
+		case EMPTY:
+			_step(8, 94, Direction::LEFT);
+			break;
+		case 8:
+			_step(8, 95, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 93, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 94:
+		switch (_symbol) {
+		case EMPTY:
+		case 8:
+			_step(8, 95, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 94, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 95:
+		switch (_symbol) {
+		case EMPTY:
+			_step(8, 96, Direction::LEFT);
+			break;
+		case 8:
+			_step(8, 95, Direction::LEFT);
+			break;
+		case 1:
+		case 0:
+			_step(_symbol, 96, Direction::STOP);
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 96:
+		switch (_symbol) {
+		case 0:
+		case EMPTY:
+			_step(1, 900, Direction::RIGHT);
+			break;
+		case 1:
+			_step(0, 96, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 900:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, 901, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+		case 8:
+			_step(_symbol, 900, Direction::RIGHT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 900, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 901:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 0, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 901, Direction::RIGHT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 901, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 902:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, 903, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+		case 8:
+			_step(_symbol, 902, Direction::RIGHT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 902, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 903:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 100, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 903, Direction::RIGHT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 903, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 904:
+		switch (_symbol) {
+		case EMPTY:
+		case 8:
+			_step(_symbol, 902, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 904, Direction::LEFT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 904, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 905:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, 904, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 905, Direction::LEFT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 905, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 953:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 9999, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 953, Direction::RIGHT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 953, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 952:
+		switch (_symbol) {
+		case EMPTY:
+			_step(EMPTY, 953, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 952, Direction::RIGHT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 952, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 951:
+		switch (_symbol) {
+		case EMPTY:
+		case 8:
+			_step(_symbol, 952, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 951, Direction::LEFT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 951, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 950:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, 951, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, 950, Direction::LEFT);
+			break;
+		case 2:
+		case 3:
+			_step((_symbol - 2), 950, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 100:
+	case 110:
+	case 120:
+	case 130:
+	case 140:
+	case 150:
+	case 160:
+	case 170:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, 93, Direction::LEFT);
+			break;
+		case 0:
+			_step(2, _state + 10, Direction::LEFT);
+			break;
+		case 2:
+		case 3:
+			_step(_symbol, _state + 10, Direction::LEFT);
+			break;
+		case 1:
+			_step(3, _state + 11, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 111:
+	case 121:
+	case 131:
+	case 141:
+	case 151:
+	case 161:
+	case 171:
+	case 181:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, _state + 100, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+			_step(_symbol, _state, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 211:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, _state, Direction::LEFT);
+			break;
+		case 0:
+			_step(1, _state, Direction::LEFT);
+			break;
+		case 1:
+			_step(0, 400, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 221:
+	case 231:
+	case 241:
+	case 251:
+	case 261:
+	case 271:
+	case 281:
+		switch (_symbol) {
+		case 0:
+		case 1:
+			_step(_symbol, _state - 10, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 301:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, 951, Direction::LEFT);
+			break;
+		case 0:
+			_step(2, 302, Direction::RIGHT);
+			break;
+		case 1:
+			_step(3, 312, Direction::RIGHT);
+			break;
+		case 2:
+		case 3:
+			_step(_symbol, _state, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 302:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, 303, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			_step(_symbol, _state, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 303:
+		switch (_symbol) {
+		case 0:
+			_step(2, 304, Direction::RIGHT);
+			break;
+		case 1:
+			_step(_symbol, 950, Direction::LEFT);
+			break;
+		case 2:
+		case 3:
+			_step(_symbol, _state, Direction::RIGHT);
+			break;
+		case EMPTY:
+			_step(_symbol, 905, Direction::LEFT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 304:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, 305, Direction::LEFT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			_step(_symbol, _state, Direction::LEFT);
+			break;
+		}
+		break;
+	case 305:
+		switch (_symbol) {
+		case EMPTY:
+		case 8:
+			_step(_symbol, 301, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			_step(_symbol, _state, Direction::LEFT);
+			break;
+		}
+		break;
+	case 312:
+		switch (_symbol) {
+		case EMPTY:
+			_step(_symbol, 313, Direction::RIGHT);
+			break;
+		case 0:
+		case 1:
+		case 2:
+		case 3:
+			_step(_symbol, 312, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 313:
+		switch (_symbol) {
+		case 0:
+			_step(_symbol, 905, Direction::LEFT);
+			break;
+		case 1:
+			_step(3, 304, Direction::LEFT);
+			break;
+		case 2:
+		case 3:
+			_step(_symbol, 313, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 400:
+		switch (_symbol) {
+		case 0:
+			_step(_symbol, _state, Direction::LEFT);
+			break;
+		case 1:
+			_step(_symbol, 90, Direction::RIGHT);
+			break;
+		case 8:
+		case EMPTY:
+			_step(8, 401, Direction::RIGHT);
+			break;
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 401:
+		switch (_symbol) {
+		case 0:
+			_step(8, _state, Direction::RIGHT);
+			break;
+		case 1:
+			_step(_symbol, 90, Direction::RIGHT);
+		default:
+			std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+			break;
+		}
+		break;
+	case 9999:
+		std::cout << "\n\nDzielenie zakonczone." << "\n\n";
+		return true;
+		break;
+	default:
+		std::cout << "\n\nNie rozpoznano kombinacji stan : " << _state << ", symbol : " << _symbol << "\n\n";
+		break;
+	}
+
+	return false;
 }
